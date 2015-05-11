@@ -11,8 +11,9 @@ module.exports = {
 
     // If not logged in, show the public view.
     if (!req.session.me) {
-      return res.view('homepage', {
-        pageName: 'Homepage'
+      return res.view('common/homepage', {
+        pageName: 'Homepage',
+        displayLogin: true
       });
     }
 
@@ -25,9 +26,12 @@ module.exports = {
 
       if (!user) {
         sails.log.verbose('Session refers to a user who no longer exists- did you delete a user, then try to refresh the page with an open tab logged-in as that user?');
-        return res.view('homepage');
+        return res.view('common/homepage', {
+          pageName: 'Homepage',
+          displayLogin: true
+        });
       }
-      return res.view('dashboard', {
+      return res.view('common/dashboard', {
         me: {
           id: user.id,
           name: user.name,

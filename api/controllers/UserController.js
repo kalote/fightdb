@@ -75,29 +75,36 @@ module.exports = {
             return res.negotiate(err);
           },
           success: function(gravatarUrl) {
-          // Create a User with the params sent from
-          // the sign-up form --> signup.ejs
+            // Create a User with the params sent from
+            // the sign-up form --> signup.ejs
             User.create({
               name: req.param('name'),
               nickname: req.param('nickname'),
               email: req.param('email'),
+              gender: req.param('gender'),
+              status: 'online',
               encryptedPassword: encryptedPassword,
               lastLoggedIn: new Date(),
               gravatarUrl: gravatarUrl
             }, function userCreated(err, newUser) {
               if (err) {
-
-                console.log("err: ", err);
-                console.log("--------------");
-                console.log(err);
-                console.log("--------------");
-                console.log(err.details);
+                //[ 'originalError', '_e', 'rawStack', 'details', 'model' ]
+                //console.log("---------- original -----");
+                //console.log(err.originalError.err);
+                var errMsg = JSON.stringify(err.originalError.err);
 
                 // If this is a uniqueness error about the email attribute,
                 // send back an easily parseable status code.
-                if (err.invalidAttributes && err.invalidAttributes.email && err.invalidAttributes.email[0]
-                  && err.invalidAttributes.email[0].rule === 'unique') {
+                if (err.originalError.code == 11000 && errMsg.indexOf("duplicate key") != -1
+                  && errMsg.indexOf("email") != -1) {
                   return res.emailAddressInUse();
+                }
+
+                // If this is a uniqueness error about the nickname attribute,
+                // send back an easily parseable status code.
+                if (err.originalError.code == 11000 && errMsg.indexOf("duplicate key") != -1
+                  && errMsg.indexOf("nickname") != -1) {
+                  return res.nicknameInUse();
                 }
 
                 // Otherwise, send back something reasonable as our error response.
@@ -136,11 +143,99 @@ module.exports = {
       }
 
       // Wipe out the session (log out)
-      req.session.me = null;
+      req.session.destroy();
 
       // Either send a 200 OK or redirect to the home page
       return res.backToHomePage();
 
     });
-  }
+  },
+
+  //display the user information
+  find: function (req,res){
+    User.findOne(req.param("id"), function foundUser(err, user) {
+      if (err) return res.negotiate(err);
+      if (!user) return res.negotiate();
+
+      res.view({
+        me: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          nickname: user.nickname,
+          gender: user.gender,
+          gravatarUrl: user.gravatarUrl
+        },
+        layout: 'layouts/private',
+        pageName: 'User'
+      });
+    });
+  },
+
+  //load the edit user view
+  edit: function(req, res) {
+
+    // Find the user from the id passed in via params
+    User.findOne(req.param("id"), function foundUser(err, user) {
+      if (err) return res.negotiate(err);
+      if (!user) return res.negotiate();
+
+      res.view({
+        me: user,
+        layout: 'layouts/private',
+        pageName: 'User'
+      });
+    });
+  },
+
+  // process the info from edit view
+  update: function(req, res) {
+    var userObj = {
+      name: req.param('name'),
+      nickname: req.param('nickname'),
+      email: req.param('email')
+    }
+
+    User.update(req.param('id'), userObj, function userUpdated(err) {
+      if (err) {
+        //[ 'originalError', '_e', 'rawStack', 'details', 'model' ]
+        //console.log("---------- original -----");
+        //console.log(err.originalError);
+
+        // If this is a uniqueness error about the email attribute,
+        // send back an easily parseable status code.
+        var errMsg = JSON.stringify(err.originalError.err);
+        if (err.originalError.code == 11000 && errMsg.indexOf("duplicate key") != -1
+          && errMsg.indexOf("email") != -1) {
+          return res.emailAddressInUse();
+        }
+
+        // If this is a uniqueness error about the nickname attribute,
+        // send back an easily parseable status code.
+        if (err.originalError.code == 11000 && errMsg.indexOf("duplicate key") != -1
+          && errMsg.indexOf("nickname") != -1) {
+          return res.nicknameInUse();
+        }
+      }
+
+      return res.json({
+        id: req.param("id")
+      });
+    });
+  },
+
+  // Display the user settings
+  settings: function(req, res) {
+    // Find the user from the id passed in via params
+    User.findOne(req.param("id"), function foundUser(err, user) {
+      if (err) return res.negotiate(err);
+      if (!user) return res.negotiate();
+
+      res.view({
+        me: user,
+        layout: 'layouts/private',
+        pageName: 'User'
+      });
+    });
+  },
 };

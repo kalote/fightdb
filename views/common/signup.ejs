@@ -23,7 +23,26 @@
         </span>
       </div>
 
-      <!-- T I T L E -->
+      <!-- G E N D E R -->
+
+      <div class="control-group form-group col-md-12" 
+      ng-class="{'has-error':signup.gender.$invalid &&
+                            signup.gender.$dirty}">
+        <label>Your gender</label>
+        <div>
+          <label class="radio-inline">
+            <input type="radio" name="gender" value="Male" ng-model="signupForm.gender" required> Male
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="gender" value="Female" ng-model="signupForm.gender" required> Female
+          </label>
+        </div>
+        <span class="help-block has-error" ng-if="signup.gender.$dirty">
+          <span ng-show="signup.gender.$error.required">Gender is required.</span>
+        </span>
+      </div>
+
+      <!-- N I C K N A M E-->
 
       <div class="control-group form-group col-md-12" 
       ng-class="{'has-error':signup.nickname.$invalid &&

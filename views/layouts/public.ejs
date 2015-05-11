@@ -33,9 +33,10 @@
           </button>
 
           <!-- This is the brand on the left-hand side. -->
-          <a class="navbar-brand" href="/#"> Fight DB</a>
+          <a class="navbar-brand" href="/"> Fight DB</a>
         </div>
-        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+        <% if (displayLogin) { %>
+        <div ng-controller="LoginController" class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
           <form ng-submit="submitLoginForm()" class="navbar-form navbar-right">
             <div class="form-group">
               <input ng-model="loginForm.email" type="text" placeholder="Email" name="email" class="form-control">
@@ -51,6 +52,7 @@
             <input type="hidden" name="_csrf" value="<%= _csrf %>" />
           </form>
         </div>
+        <% } %>
       </div>
     </nav>
 
@@ -66,8 +68,11 @@
     <script src="/js/public/signup/SignupModule.js"></script>
     <script src="/js/private/dashboard/DashboardModule.js"></script>
     <script src="/js/public/homepage/HomepageModule.js"></script>
+    <script src="/js/private/user/UserModule.js"></script>
     <script src="/js/private/dashboard/DashboardController.js"></script>
+    <script src="/js/private/user/UserController.js"></script>
     <script src="/js/public/homepage/HomepageController.js"></script>
+    <script src="/js/public/login/LoginController.js"></script>
     <script src="/js/public/signup/SignupController.js"></script>
     <!--SCRIPTS END-->
   </body>

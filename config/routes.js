@@ -34,9 +34,10 @@ module.exports.routes = {
 
   //Server-rendered HTML webpages
   'GET /signup': {
-    view: 'signup',
+    view: 'common/signup',
     locals: {
-      pageName: 'Signup'
+      pageName: 'Signup',
+      displayLogin: false
     }
   },
   'GET /': 'PageController.showHomePage',

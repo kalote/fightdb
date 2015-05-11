@@ -17,7 +17,8 @@ module.exports = {
 
     // The user's nickname
     nickname: {
-      type: 'string'
+      type: 'string',
+      unique: true
     },
 
     // The user's email address
@@ -31,6 +32,12 @@ module.exports = {
     encryptedPassword: {
       type: 'string',
       required: true
+    },
+
+    // The gender
+    gender: {
+      type: 'string',
+      enum: ['Male','Female']
     },
 
     // The timestamp when the the user last logged in
@@ -49,6 +56,19 @@ module.exports = {
     status: {
       type: 'string',
       defaultsTo: 'offline'
+    },
+
+    //UserSettings collection
+    //one-to-one
+    userSettings: {
+      model: 'UserSettings'
+    },
+
+    //Group collection
+    //many-to-many
+    groups: {
+      collection: 'group',
+      via: 'member'
     }
   }
 };
