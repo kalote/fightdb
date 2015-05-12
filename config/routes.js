@@ -49,6 +49,7 @@ module.exports.routes = {
 
   // User settings
   'GET /user/settings/:id': 'UserSettingsController.index',
+  'GET /user/settings/edit/:id': 'UserSettingsController.edit'
 
   /***************************************************************************
   *                                                                          *

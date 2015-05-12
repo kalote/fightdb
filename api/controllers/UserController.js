@@ -222,20 +222,5 @@ module.exports = {
         id: req.param("id")
       });
     });
-  },
-
-  // Display the user settings
-  settings: function(req, res) {
-    // Find the user from the id passed in via params
-    User.findOne(req.param("id"), function foundUser(err, user) {
-      if (err) return res.negotiate(err);
-      if (!user) return res.negotiate();
-
-      res.view({
-        me: user,
-        layout: 'layouts/private',
-        pageName: 'User'
-      });
-    });
-  },
+  }
 };

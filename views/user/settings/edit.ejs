@@ -1,0 +1,86 @@
+<form ng-submit="submitEditSettingsForm()" id="edit-settings-form" class="col-md-6 col-md-offset-3" name="editsettings">
+	<h2 class="form-edit-heading">Edit your settings</h2>
+	<!-- F A C E B O O K -->
+	<div class="control-group form-group col-md-12">
+		<label>Your facebook</label>
+
+		<input type="text" class="form-control" placeholder="www.facebook.com/Daigo" name="facebook" ng-model="editSettingsForm.facebook" ng-init="editSettingsForm.facebook = '<%=settings.facebook%>'">
+	</div>
+
+	<!-- T W I T T E R -->
+	<div class="control-group form-group col-md-12">
+		<label>Your twitter</label>
+
+		<input type="text" class="form-control" placeholder="www.twitter.com/Daigo" name="twitter" ng-model="editSettingsForm.twitter" ng-init="editSettingsForm.twitter = '<%=settings.twitter%>'">
+	</div>
+
+	<!-- T W I T C H -->
+	<div class="control-group form-group col-md-12">
+		<label>Your twitch</label>
+
+		<input type="text" class="form-control" placeholder="www.twitch.com/Daigo" name="twitch" ng-model="editSettingsForm.twitch" ng-init="editSettingsForm.twitch = '<%=settings.twitch%>'">
+	</div>
+
+	<!-- G A M E S -->
+	<div class="control-group form-group col-md-12">
+		<div class="row">
+			<div class="col-md-12">
+				<label>Your games</label>
+			</div>
+			<div class="col-md-10">
+				<select ng-model="editSettingsForm.games" class="form-control" title="games">
+					<% for (var i in games) {%>
+						<option value="<%=games[i].title%>"><%=games[i].title%></option>
+					<% } %>
+				</select>
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-primary" ng-click="addGame()">+</button>
+			</div>
+			<div class="col-md-12">
+				<div class="gamesAdded"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- F A V O R I T E C H A R A C T E R S -->
+	<div class="control-group form-group col-md-12">
+		<div class="row">
+			<div class="col-md-12">
+				<label>Your favorite characters</label>
+			</div>
+			<div class="col-md-10">
+				<select ng-model="editSettingsForm.favChars" class="form-control" title="favChars">
+					<% 
+					for (var i in games) {
+						for (var j in games[i].characters) {
+						%>
+						<option value="<%=games[i].characters[j].name%>">
+							<img src="/images/character/<%=games[i].characters[j].picture%>"> <%=games[i].characters[j].name%>
+						</option>
+						<%
+						}
+					}
+					%>
+				</select>
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-primary" ng-click="addChar()">+</button>
+			</div>
+			<div class="col-md-12">
+				<div class="characterAdded"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="control-group form-group col-md-12">
+		<button class="btn btn-primary btn-lg btn-block" type="submit">
+			<span ng-show="!editSettingsForm.loading">Save settings</span>
+			<span class="overlord-loading-spinner fa fa-spinner" ng-show="editSettingsForm.loading" ></span>
+			<span ng-show="editSettingsForm.loading">Saving your settings...</span>
+		</button>
+	</div>
+
+	<input type="hidden" name="_csrf" value="<%=_csrf%>" ng-model="editSettingsForm._csrf" />
+	<input type="hidden" name="userId" ng-init=" editSettingsForm.userId = '<%=me%>'" ng-model="editSettingsForm.userId" />
+</form>

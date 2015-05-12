@@ -1,0 +1,25 @@
+<div class="container text-center">
+	<h1>Here are the settings we have:</h1>
+	<hr>
+	<div class="col-md-6 col-md-offset-3 text-left">
+		<h3>Facebook: <%-settings.facebook ? settings.facebook : '<em>No Facebook set</em>'%></h3>
+		<h3>Twitter: <%-settings.twitter ? settings.twitter : '<em>No Twitter set</em>'%></h3>
+		<h3>Twitch: <%-settings.twitch ? settings.twitch : '<em>No Twitch set</em>'%></h3>
+		<h3>Games: <%-settings.games ? settings.games.title : '<em>No games set</em>'%></h3>
+		
+		<% if(settings.favoriteCharacters) { %>
+			<ul>
+			<% for (var i in settings.favoriteCharacters) { %>
+				<li>
+					<img src="/images/character/<%=fav[i].picture%>">
+					<%= fav[i].name %>
+				</li>
+			<% } %>
+			</ul>
+		<% } else { %>
+			<h3>Favorite characters: <em>No favorite characters set</em></h3>
+		<% } %>
+		
+		<a class="btn btn-medium btn-primary" href="/user/settings/edit/<%=me%>">Edit</a>
+	</div>
+</div>

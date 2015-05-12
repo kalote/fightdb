@@ -22,7 +22,7 @@ module.exports = {
   	//many-to-many
   	games:{
   		collection: 'game',
-      	via: 'users'
+      via: 'users'
   	},
   	//favorite characters
   	//many-to-many
