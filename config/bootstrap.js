@@ -11,6 +11,10 @@
 
 module.exports.bootstrap = function(cb) {
 
+	var baseGame = {
+		title: 'USF4',
+		picture: 'usf4.png'
+	};
 	var baseCharacters = [
 	{
 		name: 'Abel',
@@ -246,19 +250,41 @@ module.exports.bootstrap = function(cb) {
 		stun: 1100,
 		picture: 'zangief.gif'
 	}
-	]
+	];
 	
-	Character.count().exec(function(err, count) {
-	    if(err) {
-	      sails.log.error('Already have data.');
-	      return cb(err);
-	    }
-	    if(count > 0) return cb();
-
-		Character.create(baseCharacters).exec(cb);
+	Game.count().exec(function(err, count) {
+		if (err) {
+			sails.log.error('Already have data.');
+			return cb(err);
+		}
+		//If no game, we suppose that there's no character either
+		if (count == 0) {
+			Game.create(baseGame, function gameCreated(err, game) {
+				if (err) return cb(err);
+				//we add the gameId in each character
+				for (var index in baseCharacters){
+					baseCharacters[index].game = game.id;
+				}
+				//we create the charactes
+				Character.create(baseCharacters, function charCreated(err, chars){
+					if (err) return cb(err);
+					//we update the game with the characters ID
+					var charsId = [];
+					for (var i in chars){
+						charsId[i] = chars[i].id;
+					}
+					Game.update(game.id, {characters: charsId}, function gameUpdated(err) {
+						if (err) return cb(err);
+						//everything went well, call cb()
+						cb();
+					});
+				});		
+			})
+		} else 
+			return cb();
 	});
 
 	// It's very important to trigger this callback method when you are finished
 	// with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-	cb();
+	//cb();
 };

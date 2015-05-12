@@ -1,5 +1,5 @@
 /**
-* Character.js
+* Game.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -8,25 +8,21 @@
 module.exports = {
 
   attributes: {
-  	name: {
+  	title:{
   		type: 'string',
   		required: true
   	},
-  	picture: {
+  	picture:{
   		type: 'string'
   	},
-  	health: {
-  		type: 'string'
+  	characters:{
+  		collection: 'character',
+  		via: 'game'
   	},
-  	stun: {
-  		type: 'string'
-  	},
-  	game: {
-  		model: 'game'
-  	},
-  	player: {
+  	//link with users
+  	users:{
   		collection: 'usersettings',
-  		via: 'favoriteCharacters'
+  		via: 'games'
   	}
   }
 };

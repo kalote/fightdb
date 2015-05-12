@@ -61,14 +61,14 @@ module.exports = {
     //UserSettings collection
     //one-to-one
     userSettings: {
-      model: 'UserSettings'
+      model: 'usersettings'
     },
 
     //Group collection
     //many-to-many
     groups: {
       collection: 'group',
-      via: 'member'
+      via: 'members'
     }
   }
 };

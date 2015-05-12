@@ -8,13 +8,30 @@
 module.exports = {
 
   attributes: {
-  	//characters collection
+  	//Social settings
+  	facebook: {
+  		type: 'string'
+  	},
+  	twitter: {
+  		type: 'string'
+  	},
+  	twitch: {
+  		type: 'string'
+  	},
+  	//games collection
   	//many-to-many
-	characters: {
-		collection: 'character'
-	}
-	//user link
-    //one-to-one
+  	games:{
+  		collection: 'game',
+      	via: 'users'
+  	},
+  	//favorite characters
+  	//many-to-many
+  	favoriteCharacters: {
+  		collection: 'character',
+  		via: 'player'
+  	},
+    //user link
+    //one-to-one  
     user: {
       model: 'user'
     }
