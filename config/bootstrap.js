@@ -16,235 +16,235 @@ module.exports.bootstrap = function(cb) {
 		name: 'Abel',
 		health:	1050,
 		stun: 1050,
-		picture: 'Abel.png'
+		picture: 'abel.gif'
 	},
 	{
 		name: 'Adon',
 		health:	950,
 		stun: 1000,
-		picture: 'Adon.png'
+		picture: 'adon.gif'
 	},
 	{
 		name: 'Akuma',
 		health:	850,
 		stun: 850,
-		picture: 'Akuma.png'
+		picture: 'akuma.gif'
 	},
 	{
 		name: 'Balrog',
 		health:	1050,
 		stun: 1000,
-		picture: 'Balrog.png'
+		picture: 'balrog.gif'
 	},
 	{
 		name: 'Blanka',
 		health:	1000,
 		stun: 950,
-		picture: 'Blanka.png'
+		picture: 'blanka.gif'
 	},
 	{
 		name: 'Cammy',
 		health:	950,
 		stun: 950,
-		picture: 'Cammy.png'
+		picture: 'cammy.gif'
 	},
 	{
 		name: 'ChunLi',
 		health:	900,
 		stun: 1050,
-		picture: 'ChunLi.png'
+		picture: 'chunli.gif'
 	},
 	{
 		name: 'Cody',
 		health:	1000,
 		stun: 1050,
-		picture: 'Cody.png'
+		picture: 'cody.gif'
 	},
 	{
 		name: 'Viper',
 		health:	900,
 		stun: 950,
-		picture: 'Viper.png'
+		picture: 'viper.gif'
 	},
 	{
 		name: 'Dan',
 		health:	1000,
 		stun: 900,
-		picture: 'Dan.png'
+		picture: 'dan.gif'
 	},
 	{
 		name: 'DeeJay',
 		health:	1000,
 		stun: 1000,
-		picture: 'DeeJay.png'
+		picture: 'deejay.gif'
 	},
 	{
 		name: 'Dhalsim',
 		health:	900,
 		stun: 900,
-		picture: 'Dhalsim.png'
+		picture: 'dhalsim.gif'
 	},
 	{
 		name: 'Dudley',
 		health:	1050,
 		stun: 1050,
-		picture: 'Dudley.png'
+		picture: 'dudley.gif'
 	},
 	{
 		name: 'Honda',
 		health:	1050,
 		stun: 1100,
-		picture: 'Honda.png'
+		picture: 'honda.gif'
 	},
 	{
 		name: 'ElFuerte',
 		health:	900,
 		stun: 1000,
-		picture: 'ElFuerte.png'
+		picture: 'elfuerte.gif'
 	},
 	{
 		name: 'EvilRyu',
 		health:	850,
 		stun: 850,
-		picture: 'EvilRyu.png'
+		picture: 'evilryu.gif'
 	},
 	{
 		name: 'FeiLong',
 		health:	1000,
 		stun: 1050,
-		picture: 'FeiLong.png'
+		picture: 'feilong.gif'
 	},
 	{
 		name: 'Gen',
 		health:	900,
 		stun: 900,
-		picture: 'Gen.png'
+		picture: 'gen.gif'
 	},
 	{
 		name: 'Gouken',
 		health:	1000,
 		stun: 1000,
-		picture: 'Gouken.png'
+		picture: 'gouken.gif'
 	},
 	{
 		name: 'Guile',
 		health:	1000,
 		stun: 900,
-		picture: 'Guile.png'
+		picture: 'guile.gif'
 	},
 	{
 		name: 'Guy',
 		health:	1000,
 		stun: 950,
-		picture: 'Guy.png'
+		picture: 'guy.gif'
 	},
 	{
 		name: 'Hakan',
 		health:	1050,
 		stun: 1100,
-		picture: 'Hakan.png'
+		picture: 'hakan.gif'
 	},
 	{
 		name: 'Ibuki',
 		health:	900,
 		stun: 950,
-		picture: 'Ibuki.png'
+		picture: 'ibuki.gif'
 	},
 	{
 		name: 'Juri',
 		health:	950,
 		stun: 950,
-		picture: 'Juri.png'
+		picture: 'juri.gif'
 	},
 	{
 		name: 'Ken',
 		health:	1000,
 		stun: 1000,
-		picture: 'Ken.png'
+		picture: 'ken.gif'
 	},
 	{
 		name: 'Makoto',
 		health:	1000,
 		stun: 1050,
-		picture: 'Makoto.png'
+		picture: 'makoto.gif'
 	},
 	{
 		name: 'Bison',
 		health:	1000,
 		stun: 950,
-		picture: 'Bison.png'
+		picture: 'bison.gif'
 	},
 	{
 		name: 'Oni',
 		health:	950,
 		stun: 950,
-		picture: 'Oni.png'
+		picture: 'oni.gif'
 	},
 	{
 		name: 'Rose',
 		health:	950,
 		stun: 1000,
-		picture: 'Rose.png'
+		picture: 'rose.gif'
 	},
 	{
 		name: 'Rufus',
 		health:	1050,
 		stun: 950,
-		picture: 'Rufus.png'
+		picture: 'rufus.gif'
 	},
 	{
 		name: 'Ryu',
 		health:	1000,
 		stun: 1000,
-		picture: 'Ryu.png'
+		picture: 'ryu.gif'
 	},
 	{
 		name: 'Sagat',
 		health:	1050,
 		stun: 1000,
-		picture: 'Sagat.png'
+		picture: 'sagat.gif'
 	},
 	{
 		name: 'Sakura',
 		health:	950,
 		stun: 1000,
-		picture: 'Sakura.png'
+		picture: 'sakura.gif'
 	},
 	{
 		name: 'Seth',
 		health:	800,
 		stun: 900,
-		picture: 'Seth.png'
+		picture: 'seth.gif'
 	},
 	{
 		name: 'Hawk',
 		health:	1100,
 		stun: 1100,
-		picture: 'Hawk.png'
+		picture: 'thawk.gif'
 	},
 	{
 		name: 'Vega',
 		health:	1000,
 		stun: 900,
-		picture: 'Vega.png'
+		picture: 'vega.gif'
 	},
 	{
 		name: 'Yang',
 		health:	900,
 		stun: 1000,
-		picture: 'Yang.png'
+		picture: 'yang.gif'
 	},
 	{
 		name: 'Yun',
 		health:	900,
 		stun: 1000,
-		picture: 'Yun.png'
+		picture: 'yun.gif'
 	},
 	{
 		name: 'Zangief',
 		health:	1100,
 		stun: 1100,
-		picture: 'Zangief.png'
+		picture: 'zangief.gif'
 	}
 	]
 	
