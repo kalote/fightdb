@@ -11,10 +11,10 @@ angular.module('HomepageModule').controller('LoginController', ['$scope', '$http
     $scope.loginForm.loading = true;
 
     //CSRF header
-    $http.defaults.headers.put['X-CSRF-Token']=document.getElementsByName('_csrf')[0].value;
+    $http.defaults.headers.post['X-CSRF-Token']=document.getElementsByName('_csrf')[0].value;
 
     // Submit request to Sails.
-    $http.put('/login', {
+    $http.post('/login', {
       email: $scope.loginForm.email,
       password: $scope.loginForm.password
     })

@@ -7,10 +7,15 @@
 
 module.exports = {
 
-  /**
-   * Check the provided email address and password, and if they
-   * match a real user in the database, sign in to fight DB.
-   */
+  //login page 
+  displayLogin: function(req,res) {
+    res.view('user/login', {
+      pageName: 'Homepage',
+      displayLogin: false
+    });
+  },
+
+  //login function
   login: function (req, res) {
 
     // Try to look up user using the provided email address
@@ -50,9 +55,7 @@ module.exports = {
 
   },
 
-  /**
-   * Sign up for a user account.
-   */
+  //signup form
   signup: function(req, res) {
 
     var Passwords = require('machinepack-passwords');
@@ -125,10 +128,7 @@ module.exports = {
     });
   },
 
-  /**
-   * Log out 
-   * (wipes `me` from the sesion)
-   */
+  //Log out function
   logout: function (req, res) {
 
     // Look up the user record from the database which is
@@ -188,7 +188,7 @@ module.exports = {
     });
   },
 
-  // process the info from edit view
+  //process the info from edit view
   update: function(req, res) {
     var userObj = {
       name: req.param('name'),

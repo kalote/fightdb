@@ -43,8 +43,9 @@ module.exports.routes = {
   'GET /': 'PageController.showHomePage',
 
   // User enrollment + authentication
+  'GET /login': 'UserController.displayLogin',
   'POST /signup': 'UserController.signup',
-  'PUT /login': 'UserController.login',
+  'POST /login': 'UserController.login',
   'GET /logout': 'UserController.logout',
 
   // User settings

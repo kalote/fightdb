@@ -26,7 +26,19 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
+  '*': "flash",
+
+  user: {
+    displayLogin: "flash",
+    signup: "flash",
+    find: "userCanSeeProfile",
+    edit: "userCanSeeProfile",
+    update: "userCanSeeProfile"
+  },
+
+  userSettings: {
+    '*': "userCanSeeProfile"
+  }
 
   /***************************************************************************
   *                                                                          *
