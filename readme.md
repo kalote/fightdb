@@ -6,6 +6,8 @@
 
 Fighter DB is an app that offers fighters a way to keep tracks of their match results and give them statistics : Want to know who is the best Ryu in your area ? who is better at Guilty Gear: you or your friend ? What's your win rate against a particular player or character ?
 
+This app also offers a way to join a group of fighter sharing the same will of keeping scores. Find an existing community, or create one to start sharing scores!
+
 Add new (or existing) friends, create a community, create session and meet new fighters around you!
 
 ###Find
@@ -32,7 +34,7 @@ Add new (or existing) friends, create a community, create session and meet new f
 
 ##Registration
 
-Register using google / facebook auth, or enter the needed information are: 
+Register using the needed information: 
 
 - Name
 - Gender
@@ -48,13 +50,12 @@ Register using google / facebook auth, or enter the needed information are:
 
 Users can set up multiple additionnal information in their profile:
 
-- Social network links:
+- Social network settings:
 	- Twitter
 	- Facebook
 	- Twitch
 - Game settings:
-	- keep rounds or match
-	- number of rounds
+	- Favorite game
 	- Favorite characters
 - Friends list
 	- Manage your friends and your community

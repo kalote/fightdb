@@ -14,12 +14,7 @@ angular.module('SignupModule').controller('SignupController', ['$scope', '$http'
 		$http.defaults.headers.post['X-CSRF-Token']=document.getElementsByName('_csrf')[0].value;
 		
 		// Submit request to Sails.
-		$http.post('/signup', {
-			name: $scope.signupForm.name,
-			nickname: $scope.signupForm.nickname,
-			email: $scope.signupForm.email,
-			password: $scope.signupForm.password
-		}, {
+		$http.post('/signup', $scope.signupForm, {
 			withCredentials: true
 		})
 		.then(function onSuccess(sailsResponse){

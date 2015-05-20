@@ -1,11 +1,64 @@
-<div class="container text-center">
-	<h1>Here are the information we have:</h1>
-	<hr>
-	<div class="col-md-6 col-md-offset-3 text-left">
-		<h3>Name: <%=me.name%></h3>
-		<h3>Nickname: <%=me.nickname%></h3>
-		<h3>Contact: <%=me.email%></h3>
-		<h3>Gravatar: <img src="<%=me.gravatarUrl%>"></h3>
-		<a class="btn btn-medium btn-primary" href="/user/edit/<%=me.id%>">Edit</a>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="text-center">Personal Information</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-4 text-left">
+							<h3>Name:</h3>
+						</div>
+						<div class="col-md-8 text-left">
+							<h3><%=me.name%></h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-left">
+							<h3>Nickname:</h3>
+						</div>
+						<div class="col-md-8 text-left">
+							<h3><%=me.nickname%></h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-left">
+							<h3>Gamertag:</h3>
+						</div>
+						<div class="col-md-8 text-left">
+							<h3><%=me.gamertag%></h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-left">
+							<h3>Email:</h3>
+						</div>
+						<div class="col-md-8 text-left">
+							<h3><%=me.email%></h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-left">
+							<h3>Gravatar:</h3>
+						</div>
+						<div class="col-md-8 text-left gravatarText">
+							<div class="row">
+								<div class="col-md-4">
+									<img src="<%=me.gravatarUrl%>">
+								</div>
+								<div class="col-md-8">
+									<span>
+										Note: We use gravatar system. If you want to change your avatar,
+										<a href="https://en.gravatar.com" target="_blank">click here</a>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<a class="btn btn-lg btn-primary btn-block" href="/user/edit/<%=me.id%>">Edit</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

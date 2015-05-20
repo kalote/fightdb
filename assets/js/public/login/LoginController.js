@@ -14,10 +14,7 @@ angular.module('HomepageModule').controller('LoginController', ['$scope', '$http
     $http.defaults.headers.post['X-CSRF-Token']=document.getElementsByName('_csrf')[0].value;
 
     // Submit request to Sails.
-    $http.post('/login', {
-      email: $scope.loginForm.email,
-      password: $scope.loginForm.password
-    })
+    $http.post('/login', $scope.loginForm)
     .then(function onSuccess (){
       // Refresh the page now that we've been logged in.
       window.location = '/';

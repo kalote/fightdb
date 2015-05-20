@@ -24,6 +24,18 @@
 		</span>
 	</div>
 
+	<!-- G A M E R T A G -->
+	<div class="control-group form-group col-md-12" ng-class="{'has-error':edit.gamertag.$invalid && edit.gamertag.$dirty}">
+		<label>Your gamertag</label>
+
+		<input type="text" class="form-control" ng-init="editForm.gamertag = '<%=me.gamertag%>'" name="gamertag" ng-model="editForm.gamertag" ng-maxlength="50" required>
+		
+		<span class="help-block has-error" ng-if="edit.gamertag.$dirty">
+			<span ng-show="edit.gamertag.$error.required">Gamertag is required.</span>
+			<span ng-show="edit.gamertag.$error.maxlength">The gamertag cannot be more than 50 characters.</span>
+		</span>
+	</div>
+
 	<!-- E M A I L -->
 	<div class="control-group form-group col-md-12" ng-class="{'has-error':edit.email.$invalid && edit.email.$dirty}">
 	

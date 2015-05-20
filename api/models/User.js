@@ -21,6 +21,12 @@ module.exports = {
       unique: true
     },
 
+    // The user's nickname
+    gamertag: {
+      type: 'string',
+      required: true
+    },
+
     // The user's email address
     email: {
       type: 'email',

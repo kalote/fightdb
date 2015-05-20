@@ -85,6 +85,7 @@ module.exports = {
               nickname: req.param('nickname'),
               email: req.param('email'),
               gender: req.param('gender'),
+              gamertag: req.param('gamertag'),
               status: 'online',
               encryptedPassword: encryptedPassword,
               lastLoggedIn: new Date(),
@@ -164,7 +165,8 @@ module.exports = {
           email: user.email,
           nickname: user.nickname,
           gender: user.gender,
-          gravatarUrl: user.gravatarUrl
+          gravatarUrl: user.gravatarUrl,
+          gamertag: user.gamertag
         },
         layout: 'layouts/private',
         pageName: 'User'
@@ -193,7 +195,8 @@ module.exports = {
     var userObj = {
       name: req.param('name'),
       nickname: req.param('nickname'),
-      email: req.param('email')
+      email: req.param('email'),
+      gamertag: req.param('gamertag')
     }
 
     User.update(req.param('id'), userObj, function userUpdated(err) {

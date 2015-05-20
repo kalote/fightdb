@@ -14,11 +14,7 @@ angular.module('UserModule').controller('UserController', ['$scope', '$http', 't
 		$http.defaults.headers.post['X-CSRF-Token']=document.getElementsByName('_csrf')[0].value;
 		
 		// Submit request to Sails.
-		$http.post('/user/update/'+$scope.editForm.userId, {
-			name: $scope.editForm.name,
-			nickname: $scope.editForm.nickname,
-			email: $scope.editForm.email
-		}, {
+		$http.post('/user/update/'+$scope.editForm.userId, $scope.editForm, {
 			withCredentials: true
 		})
 		.then(function onSuccess(sailsResponse){
