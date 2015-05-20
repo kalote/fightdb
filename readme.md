@@ -2,6 +2,33 @@
 
 ---------------------------
 
+##Installation
+
+Go in the folder and type:
+
+```
+npm install
+```
+
+##Depedencies
+
+You'll need mongodb to work with the project. Withour mongodb, update the `config/model.js` file.
+You'll also need to create a `config/local.js` file with the proper connection information in it:
+
+```
+module.exports={
+	connections: {
+		mongo: {
+			module: 'sails-mongo',
+			host: 'localhost',
+			port: 27017,
+			user: '',
+			password: '',
+			database: 'fightdb'
+		}
+	}
+};
+```
 ##What is it
 
 Fighter DB is an app that offers fighters a way to keep tracks of their match results and give them statistics : Want to know who is the best Ryu in your area ? who is better at Guilty Gear: you or your friend ? What's your win rate against a particular player or character ?
