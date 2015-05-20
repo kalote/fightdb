@@ -25,7 +25,7 @@ module.exports = {
   		model: 'game'
   	},
   	player: {
-  		collection: 'usersettings',
+  		collection: 'usergamesettings',
   		via: 'favoriteCharacters'
   	}
   }

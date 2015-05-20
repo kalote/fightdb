@@ -1,25 +1,38 @@
-<div class="container text-center">
-	<h1>Here are the settings we have:</h1>
-	<hr>
-	<div class="col-md-6 col-md-offset-3 text-left">
-		<h3>Facebook: <%-settings.facebook ? settings.facebook : '<em>No Facebook set</em>'%></h3>
-		<h3>Twitter: <%-settings.twitter ? settings.twitter : '<em>No Twitter set</em>'%></h3>
-		<h3>Twitch: <%-settings.twitch ? settings.twitch : '<em>No Twitch set</em>'%></h3>
-		<h3>Games: <%-settings.games ? settings.games.title : '<em>No games set</em>'%></h3>
-		
-		<% if(settings.favoriteCharacters) { %>
-			<ul>
-			<% for (var i in settings.favoriteCharacters) { %>
-				<li>
-					<img src="/images/character/<%=fav[i].picture%>">
-					<%= fav[i].name %>
-				</li>
-			<% } %>
-			</ul>
-		<% } else { %>
-			<h3>Favorite characters: <em>No favorite characters set</em></h3>
-		<% } %>
-		
-		<a class="btn btn-medium btn-primary" href="/user/settings/edit/<%=me%>">Edit</a>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="text-center">Social Information</h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-4 text-left">
+							<h3>Facebook:</h3>
+						</div>
+						<div class="col-md-8 text-left">
+							<h3><%-settings.facebook ? settings.facebook : "<em>No facebook set</em>" %></h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-left">
+							<h3>Twitter:</h3>
+						</div>
+						<div class="col-md-8 text-left">
+							<h3><%-settings.twitter ? settings.twitter : "<em>No twitter set</em>" %></h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-left">
+							<h3>Twitch:</h3>
+						</div>
+						<div class="col-md-8 text-left">
+							<h3><%-settings.twitch ? settings.twitch : "<em>No twitch set</em>" %></h3>
+						</div>
+					</div>
+					<a class="btn btn-lg btn-primary btn-block" href="/user/settings/edit/<%=me.id%>">Edit</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

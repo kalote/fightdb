@@ -70,6 +70,12 @@ module.exports = {
       model: 'usersettings'
     },
 
+    //UserGameSettings collection
+    //one-to-one
+    userGameSettings: {
+      model: 'usergamesettings'
+    },
+
     //Group collection
     //many-to-many
     groups: {

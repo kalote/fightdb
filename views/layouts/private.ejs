@@ -29,7 +29,7 @@
             <span class="icon-bar"></span>
           </button>
           <!-- This is the brand on the left-hand side. -->
-          <a class="navbar-brand" href="/"> Fight DB</a>
+          <a class="navbar-brand" href="/">Fight DB</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" ng-class="!navCollapsed && 'in'">
           <ul class="nav navbar-nav">
@@ -59,7 +59,8 @@
               </a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/user/find/<%=me.id%>">Personal information</a></li>
-                <li><a href="/user/settings/<%=me.id%>">Fighter information</a></li>
+                <li><a href="/user/settings/<%=me.id%>">Social information</a></li>
+                <li><a href="/user/settings/game/<%=me.id%>">Fighter information</a></li>
                 <li><a href="/user/groups/<%=me.id%>">Groups</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>

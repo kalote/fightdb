@@ -32,7 +32,10 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  //Server-rendered HTML webpages
+  // Home page
+  'GET /': 'PageController.showHomePage',
+
+  // Signup
   'GET /signup': {
     view: 'common/signup',
     locals: {
@@ -40,17 +43,26 @@ module.exports.routes = {
       displayLogin: false
     }
   },
-  'GET /': 'PageController.showHomePage',
-
-  // User enrollment + authentication
-  'GET /login': 'UserController.displayLogin',
   'POST /signup': 'UserController.signup',
+
+  // User 
+  'GET /login': 'UserController.displayLogin',
   'POST /login': 'UserController.login',
+  'GET /user/find/:id': 'UserController.find',
+  'GET /user/edit/:id': 'UserController.edit',
+  'POST /user/update/:id': 'UserController.update',
+
+  // User Logout
   'GET /logout': 'UserController.logout',
 
-  // User settings
+  // User social settings
   'GET /user/settings/:id': 'UserSettingsController.index',
-  'GET /user/settings/edit/:id': 'UserSettingsController.edit'
+  'GET /user/settings/edit/:id': 'UserSettingsController.edit',
+  'POST /user/settings/update/:id': 'UserSettingsController.update',
+
+  // User social settings
+  'GET /user/settings/games/:id': 'UserGameSettingsController.index',
+  'GET /user/settings/games/edit/:id': 'UserGameSettingsController.edit'
 
   /***************************************************************************
   *                                                                          *
