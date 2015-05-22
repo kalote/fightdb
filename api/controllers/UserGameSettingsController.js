@@ -8,28 +8,25 @@
 module.exports = {
 	//Display the user settings information we have for the user
 	index: function (req,res){
-		var userObj = {};
-		UserSettings.findOne({user: req.param('id')}, function foundUser(err, userSettings) {
+		var userGSObj = {};
+		UserGameSettings.findOne({user: req.param('id')})
+			.populate('favoriteCharacters')
+			.populate('games')
+			.exec(function foundUserGS(err, userGameSettings) {
 			if (err) return res.negotiate(err);
 			//if no userSettings, set everything to empty
-			if (!userSettings) {
-				userObj = {
-					facebook: '',
-				  	twitter: '',
-				  	twitch: '',
-				  	games: '',
-				  	favoriteCharacters: ''
-				};
+			if (!userGameSettings) {
+				userGSObj = '';
 			} else 
-				userObj = userSettings;
+				userGSObj = userGameSettings;
 
-			res.view('user/settings/find', {
+			res.view('user/settings/game/find', {
 				layout: 'layouts/private',
 				pageName: 'User',
 				me: {
 					id: req.param('id')
 				},
-				settings: userObj
+				gsettings: userGSObj
 			});
 		});
 	},
@@ -37,31 +34,29 @@ module.exports = {
 	//User settings form
 	edit: function (req, res) {
 		var gamesInfo = {},
-			userObj = {};
-		//load the games & character into the view
+			userGSObj = {};
+
+		//load the games & character into the view if no game settings
 		Game.find().populate('characters').exec(function(err, games) {
 			if (err) return res.negotiate(err);
 			gamesInfo = games;
-
-			//find the user settings or populate with empty value
-			UserSettings.findOne({user: req.param('id')}, function foundUser(err, userSettings) {
+			//find the user game settings or populate with empty value
+			UserGameSettings.findOne({user: req.param('id')})
+				.populate('favoriteCharacters')
+				.populate('games')
+				.exec(function foundUser(err, userGameSettings) {
 				if (err) return res.negotiate(err);
-				if (!userSettings) {
-					userObj = {
-						facebook: '',
-					  	twitter: '',
-					  	twitch: '',
-					  	games: '',
-					  	favoriteCharacters: ''
-					};
-				} else 
-					userObj = userSettings;
-
-				res.view('user/settings/edit', {
+				if (!userGameSettings)
+					userGSObj = '';
+				else 
+					userGSObj = userGameSettings;
+				console.log(gsettings);
+				res.view('user/settings/game/edit', {
 					layout: 'layouts/private',
 					pageName: 'User',
 					me: req.param('id'),
-					settings: userObj,
+					gsettings: userGSObj,
+					hasGame: userGSObj==''?false:true,
 					games: gamesInfo
 				});
 			});
@@ -70,23 +65,14 @@ module.exports = {
 
 	// process the info from edit view
 	update: function(req, res) {
-		User.update(req.param('id'), userObj, function userUpdated(err) {
-			if (err) {
-				// If this is a uniqueness error about the email attribute,
-				// send back an easily parseable status code.
-				var errMsg = JSON.stringify(err.originalError.err);
-				if (err.originalError.code == 11000 && errMsg.indexOf("duplicate key") != -1
-				&& errMsg.indexOf("email") != -1) {
-					return res.emailAddressInUse();
-				}
-
-				// If this is a uniqueness error about the nickname attribute,
-				// send back an easily parseable status code.
-				if (err.originalError.code == 11000 && errMsg.indexOf("duplicate key") != -1
-				&& errMsg.indexOf("nickname") != -1) {
-					return res.nicknameInUse();
-				}
-			}
+		console.log(req.allParams());
+		var userGSObj = {
+			games: req.param('game'),
+			favoriteCharacters: req.param('characters'),
+			user: req.param('id')
+		}
+		UserGameSettings.findOrCreate({user: req.param('id')}, userGSObj, function userSettingsUpdated(err) {
+			if (err) return res.negotiate(err);
 
 			return res.json({
 				id: req.param("id")

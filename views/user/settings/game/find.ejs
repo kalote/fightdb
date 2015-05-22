@@ -1,0 +1,52 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="text-center">Game Information</h3>
+				</div>
+				<div class="panel-body">
+					<% if (gsettings=='') { %>
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<div class="well">No game settings found</div>
+						</div>
+					</div>
+					<% } else { %>
+					<div class="row">
+						<div class="col-md-4 text-left">
+							<h3>Game:</h3>
+						</div>
+						<div class="col-md-8 text-center">
+							<div class="row">
+								<% for(var j=0; j<gsettings.games.length; j++) { %>
+								<div class="col-md-<%=12/gsettings.games.length%>">
+									<img src="/images/game/<%=gsettings.games[j].picture%>" class="img-responsive">
+								</div>
+								<% } %>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 text-left">
+							<h3>Favorite characters:</h3>
+						</div>
+						<div class="col-md-8 text-left">
+							<div class="row">
+								<% for(var i=0; i<gsettings.favoriteCharacters.length; i++) { %>
+								<div class="col-md-3 col-sm-2 col-xs-3">
+									<div 
+										style="background-image: url('/images/character/<%=gsettings.favoriteCharacters[i].picture%>');" 
+										class="charSpriteSelected char charSprite"></div>
+								</div>
+								<% } %>
+							</div>
+						</div>
+					</div>
+					<% } %>
+					<a class="btn btn-lg btn-primary btn-block" href="/user/settings/game/edit/<%=me.id%>">Edit</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

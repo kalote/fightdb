@@ -60,9 +60,10 @@ module.exports.routes = {
   'GET /user/settings/edit/:id': 'UserSettingsController.edit',
   'POST /user/settings/update/:id': 'UserSettingsController.update',
 
-  // User social settings
-  'GET /user/settings/games/:id': 'UserGameSettingsController.index',
-  'GET /user/settings/games/edit/:id': 'UserGameSettingsController.edit'
+  // User game settings
+  'GET /user/settings/game/:id': 'UserGameSettingsController.index',
+  'GET /user/settings/game/edit/:id': 'UserGameSettingsController.edit',
+  'POST /user/settings/game/update/:id': 'UserGameSettingsController.update',
 
   /***************************************************************************
   *                                                                          *
