@@ -33,31 +33,27 @@ module.exports = {
 
 	//User settings form
 	edit: function (req, res) {
-		var gamesInfo = {},
-			userGSObj = {};
-
+		var userGSObj = '';
 		//load the games & character into the view if no game settings
 		Game.find().populate('characters').exec(function(err, games) {
 			if (err) return res.negotiate(err);
-			gamesInfo = games;
 			//find the user game settings or populate with empty value
-			UserGameSettings.findOne({user: req.param('id')})
-				.populate('favoriteCharacters')
-				.populate('games')
-				.exec(function foundUser(err, userGameSettings) {
+			UserGameSettings.findOne({user: req.param('id')}, 
+				function foundUser(err, userGameSettings) {
 				if (err) return res.negotiate(err);
-				if (!userGameSettings)
-					userGSObj = '';
-				else 
-					userGSObj = userGameSettings;
-				console.log(gsettings);
+				if (userGameSettings) {
+					for (var index in games){
+						games[index].favorite = userGameSettings.games.indexOf(games[index].id)>-1?true:false;
+						for (var i in games[index].characters){
+							games[index].characters[i].favorite = userGameSettings.favoriteCharacters.indexOf(games[index].characters[i].id)>-1?true:false;
+						}
+					}
+				}
 				res.view('user/settings/game/edit', {
 					layout: 'layouts/private',
 					pageName: 'User',
 					me: req.param('id'),
-					gsettings: userGSObj,
-					hasGame: userGSObj==''?false:true,
-					games: gamesInfo
+					games: games
 				});
 			});
 		});
@@ -65,7 +61,6 @@ module.exports = {
 
 	// process the info from edit view
 	update: function(req, res) {
-		console.log(req.allParams());
 		var userGSObj = {
 			games: req.param('game'),
 			favoriteCharacters: req.param('characters'),

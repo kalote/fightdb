@@ -13,7 +13,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<a ng-click="selectGame('<%=games[i].id%>','<%=i%>')">
-								<% if (gsettings != '' && gsettings.games.indexOf(games[i].id) !== -1) { %>
+								<% if (games[i].favorite) { %>
 									<img src="/images/game/<%=games[i].picture%>" 
 									class="img-responsive gameSelected game center-block" id="gameImg<%=i%>">
 								<% } else { %>
@@ -23,11 +23,10 @@
 							</a>
 						</div>
 						<div id="gameChar<%=i%>"
-							class="<%=hasGame ? '' : 'hidden'%> someMargin">
+							class="<%=games[i].favorite ? '' : 'hidden'%> someMargin">
 							<% for(var j=0; j<games[i].characters.length; j++) { %>
 							<div class="col-md-3 col-sm-2 col-xs-3">
-								<span><%=gsettings.favoriteCharacters.indexOf(games[i].characters[j].id)%></span>
-								<% if (gsettings != '' && gsettings.favoriteCharacters.indexOf(games[i].characters[j].id) !== -1) { %>
+								<% if (games[i].characters[j].favorite) { %>
 									<div 
 									style="background-image: url('/images/character/<%=games[i].characters[j].picture%>');" 
 									class="charSpriteSelected char charSprite" 
