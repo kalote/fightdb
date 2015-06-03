@@ -10,25 +10,17 @@ module.exports = {
 	//Display the user settings information we have for the user
 	index: function (req,res){
 		var userObj = {};
-		UserSettings.findOne({user: req.param('id')}, function foundUser(err, userSettings) {
+		UserSettings.findOrCreate({user: req.param('id')}, function foundUser(err, userSettings) {
 			if (err) return res.negotiate(err);
 			//if no userSettings, set everything to empty
-			if (!userSettings) {
-				userObj = {
-					facebook: '',
-				  	twitter: '',
-				  	twitch: ''
-				};
-			} else 
-				userObj = userSettings;
-
+      console.log(userObj);
 			res.view('user/settings/find', {
-				layout: 'layouts/private',
+				layout: 'private',
 				pageName: 'User',
 				me: {
 					id: req.param('id')
 				},
-				settings: userObj
+				settings: userSettings
 			});
 		});
 	},
@@ -36,7 +28,7 @@ module.exports = {
 	//User settings form
 	edit: function (req, res) {
 		var userObj = {};
-		
+
 		//find the user settings or populate with empty value
 		UserSettings.findOne({user: req.param('id')}, function foundUser(err, userSettings) {
 			if (err) return res.negotiate(err);
@@ -46,11 +38,10 @@ module.exports = {
 				  	twitter: '',
 				  	twitch: ''
 				};
-			} else 
+			} else
 				userObj = userSettings;
-
 			res.view('user/settings/edit', {
-				layout: 'layouts/private',
+				layout: 'private',
 				pageName: 'User',
 				me: req.param('id'),
 				settings: userObj
@@ -66,7 +57,7 @@ module.exports = {
 			twitch: req.param('twitch'),
 			user: req.param('id')
 		}
-		UserSettings.findOrCreate({user: req.param('id')}, userObj, function userSettingsUpdated(err) {
+		UserSettings.update({user: req.param('id')}, userObj, function userSettingsUpdated(err) {
 			if (err) return res.negotiate(err);
 
 			return res.json({

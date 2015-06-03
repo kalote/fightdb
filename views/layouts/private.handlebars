@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Fight DB | Welcome back, <%= me.name %>!</title>
+    <title>Fight DB | Welcome {{ me.name }}!</title>
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!--STYLES-->
@@ -12,11 +12,11 @@
     <!--Added this so the client has access to the csrf tag and it's grabbed first service side on every page -->
     <script type="text/javascript">
     window.SAILS_LOCALS = {
-      _csrf: '<%= _csrf %>'
+      _csrf: '{{ _csrf }}'
     };
     </script>
   </head>
-  <body ng-app="<%=pageName%>Module" ng-controller="<%=pageName%>Controller" ng-cloak>
+  <body ng-app="{{pageName}}Module" ng-controller="{{pageName}}Controller" ng-cloak>
     <!-- Creates the navbar -->
     <nav class="navbar navbar-default navbar-inverse">
       <div class="container">
@@ -33,45 +33,45 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse" ng-class="!navCollapsed && 'in'">
           <ul class="nav navbar-nav">
-            <li <%= pageName == 'Dashboard' ? 'class=active' : '' %>>
+            <li {{#is pageName 'Dashboard'}}class="active"{{/is}}>
               <a href="/">
                 <span class="glyphicon glyphicon-dashboard"></span>
                 Dashboard
               </a>
             </li>
-            <li <%= pageName == 'MatchMode' ? 'class=active' : '' %>>
+            <li {{#is pageName 'MatchMode'}}class="active"{{/is}}>
               <a href="/match-mode">
                 <span class="glyphicon glyphicon-flash"></span>
                 MatchMode
               </a>
             </li>
-            <li <%= pageName == 'Statistics' ? 'class=active' : '' %>>
-              <a href="/stats/<%=me.id%>">
+            <li {{#is pageName 'Statistics'}}class="active"{{/is}}>
+              <a href="/stats/{{me.id}}">
                 <span class="glyphicon glyphicon-stats"></span>
                 Statistics
               </a>
             </li>
-            <li class="dropdown <%= pageName == 'User' ? 'active' : '' %>">
+            <li class="dropdown {{#is pageName 'User'}}active{{/is}}">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                 <span class="glyphicon glyphicon-user"></span>
                 My profile
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/user/find/<%=me.id%>">Personal information</a></li>
-                <li><a href="/user/settings/<%=me.id%>">Social information</a></li>
-                <li><a href="/user/settings/game/<%=me.id%>">Fighter information</a></li>
-                <li><a href="/user/groups/<%=me.id%>">Groups</a></li>
+                <li><a href="/user/find/{{me.id}}">Personal information</a></li>
+                <li><a href="/user/settings/{{me.id}}">Social information</a></li>
+                <li><a href="/user/settings/game/{{me.id}}">Fighter information</a></li>
+                <li><a href="/user/groups/{{me.id}}">Groups</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </li>
-            <li <%= pageName == 'Locator' ? 'class=active' : '' %>>
+            <li {{#is pageName 'Locator'}}class="active"{{/is}}>
               <a href="/locator">
                 <span class="glyphicon glyphicon-globe"></span>
                 Fighter locator
               </a>
             </li>
-            <li <%= pageName == 'Notifications' ? 'class=active' : '' %>>
+            <li {{#is pageName 'Notifications'}}class="active"{{/is}}>
               <a href="#">
                 <span class="glyphicon glyphicon-bell"></span>
                 Notifications
@@ -82,7 +82,7 @@
       </div>
     </nav>
 
-    <%- body %>
+    {{{ body }}}
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>

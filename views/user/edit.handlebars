@@ -10,7 +10,7 @@
 					<div class="control-group form-group col-md-12" ng-class="{'has-error':edit.name.$invalid && edit.name.$dirty}">
 						<label>Your full name</label>
 
-						<input type="text" class="form-control" ng-init="editForm.name = '<%=me.name%>'" name="name" ng-model="editForm.name" ng-maxlength="50" required>
+						<input type="text" class="form-control" ng-init="editForm.name = '{{me.name}}'" name="name" ng-model="editForm.name" ng-maxlength="50" required>
 
 						<span class="help-block has-error" ng-if="edit.name.$dirty">
 							<span ng-show="edit.name.$error.required">Name is required.</span>
@@ -22,8 +22,8 @@
 					<div class="control-group form-group col-md-12" ng-class="{'has-error':edit.nickname.$invalid && edit.nickname.$dirty}">
 						<label>Your nickname</label>
 
-						<input type="text" class="form-control" ng-init="editForm.nickname = '<%=me.nickname%>'" name="nickname" ng-model="editForm.nickname" ng-maxlength="50" required>
-						
+						<input type="text" class="form-control" ng-init="editForm.nickname = '{{me.nickname}}'" name="nickname" ng-model="editForm.nickname" ng-maxlength="50" required>
+
 						<span class="help-block has-error" ng-if="edit.nickname.$dirty">
 							<span ng-show="edit.nickname.$error.required">Nickname is required.</span>
 							<span ng-show="edit.nickname.$error.maxlength">The nickname cannot be more than 50 characters.</span>
@@ -31,24 +31,19 @@
 					</div>
 
 					<!-- G A M E R T A G -->
-					<div class="control-group form-group col-md-12" ng-class="{'has-error':edit.gamertag.$invalid && edit.gamertag.$dirty}">
+					<div class="control-group form-group col-md-12">
 						<label>Your gamertag</label>
 
-						<input type="text" class="form-control" ng-init="editForm.gamertag = '<%=me.gamertag%>'" name="gamertag" ng-model="editForm.gamertag" ng-maxlength="50" required>
-						
-						<span class="help-block has-error" ng-if="edit.gamertag.$dirty">
-							<span ng-show="edit.gamertag.$error.required">Gamertag is required.</span>
-							<span ng-show="edit.gamertag.$error.maxlength">The gamertag cannot be more than 50 characters.</span>
-						</span>
+						<input type="text" class="form-control" ng-init="editForm.gamertag = '{{me.gamertag}}'" name="gamertag" ng-model="editForm.gamertag">
 					</div>
 
 					<!-- E M A I L -->
 					<div class="control-group form-group col-md-12" ng-class="{'has-error':edit.email.$invalid && edit.email.$dirty}">
-					
+
 						<label>Your email address</label>
-					
-						<input type="email" class="form-control" ng-init="editForm.email = '<%=me.email%>'" name="email" ng-model="editForm.email" required >
-					
+
+						<input type="email" class="form-control" ng-init="editForm.email = '{{me.email}}'" name="email" ng-model="editForm.email" required >
+
 						<span class="help-block has-error" ng-if="edit.email.$dirty">
 							<span ng-show="edit.email.$error.required">Email address is required.</span>
 							<span ng-show="edit.email.$error.email">Not a valid email address.</span>
@@ -63,8 +58,8 @@
 						</button>
 					</div>
 
-					<input type="hidden" name="_csrf" value="<%=_csrf%>" ng-model="editForm._csrf" />
-					<input type="hidden" name="userId" ng-init=" editForm.userId = '<%=me.id%>'" ng-model="editForm.userId" />
+					<input type="hidden" name="_csrf" value="{{_csrf}}" ng-model="editForm._csrf" />
+					<input type="hidden" name="userId" ng-init=" editForm.userId = '{{me.id}}'" ng-model="editForm.userId" />
 				</div>
 			</div>
 		</form>

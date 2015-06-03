@@ -70,14 +70,18 @@ angular.module('UserModule').controller('UserController', ['$scope', '$http', 't
 		})
 	};
 	
-	$scope.cntChar = 0;
 	// set-up loading state
 	$scope.editGameSettingsForm = {
 		loading: false,
 		game:'',
+		nbFavChar: $('input[name=nbFavChar]').val(),
 		characters: []
 	};
 
+	for (var i=0; i<$scope.editGameSettingsForm.nbFavChar; i++){
+		$scope.editGameSettingsForm.characters.push($('input[name=favCharacters'+i+']').val());
+	}
+	$scope.cntChar = $scope.editGameSettingsForm.nbFavChar;
 
 	$scope.selectGame = function (gameId, gameNbr){
 		if ( $("#gameImg"+gameNbr).hasClass("gameNotSelected") ) {
@@ -94,18 +98,20 @@ angular.module('UserModule').controller('UserController', ['$scope', '$http', 't
 	$scope.selectChar = function (charId, gameNbr, charNbr){
 		//USF4
 		if ( $("#game"+gameNbr+"char"+charNbr).hasClass("charSpriteNotSelected") ){
-			if ($scope.cntChar.length == 3){
-				toastr.warning('You cannot choose more than 3 characters', 'Warning');			
+			if ($scope.cntChar == 3){
+				toastr.warning('You cannot choose more than 3 characters', 'Warning');
 			} else {
 				$("#game"+gameNbr+"char"+charNbr).removeClass("charSpriteNotSelected").addClass("charSpriteSelected");
 				$scope.cntChar++;
 				$scope.editGameSettingsForm.characters.push(charId);
+				toastr.info('Character successfully added !', 'Info');
 			}
 		} else if ( $("#game"+gameNbr+"char"+charNbr).hasClass("charSpriteSelected") ) {
 			$("#game"+gameNbr+"char"+charNbr).removeClass("charSpriteSelected").addClass("charSpriteNotSelected");
 			$scope.cntChar--;
 			var index = $scope.editGameSettingsForm.characters.indexOf(charId);
 			$scope.editGameSettingsForm.characters.splice(index, 1);
+			toastr.info('Character successfully removed !', 'Info');
 		}
 	};
 
@@ -116,7 +122,6 @@ angular.module('UserModule').controller('UserController', ['$scope', '$http', 't
 
 		//CSRF header
 		$http.defaults.headers.post['X-CSRF-Token']=document.getElementsByName('_csrf')[0].value;
-		
 		// Submit request to Sails.
 		$http.post('/user/settings/game/update/'+$scope.editGameSettingsForm.userId, $scope.editGameSettingsForm, {
 			withCredentials: true

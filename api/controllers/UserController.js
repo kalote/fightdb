@@ -7,9 +7,10 @@
 
 module.exports = {
 
-  //login page 
+  //login page
   displayLogin: function(req,res) {
     res.view('user/login', {
+      layout:'public',
       pageName: 'Homepage',
       displayLogin: false
     });
@@ -168,7 +169,7 @@ module.exports = {
           gravatarUrl: user.gravatarUrl,
           gamertag: user.gamertag
         },
-        layout: 'layouts/private',
+        layout: 'private',
         pageName: 'User'
       });
     });
@@ -184,7 +185,7 @@ module.exports = {
 
       res.view({
         me: user,
-        layout: 'layouts/private',
+        layout: 'private',
         pageName: 'User'
       });
     });

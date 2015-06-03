@@ -9,10 +9,12 @@ module.exports = {
 
 	showHomePage: function (req, res) {
 
+
     // If not logged in, show the public view.
     if (!req.session.me) {
       return res.view('common/homepage', {
         pageName: 'Homepage',
+        layout: 'public',
         displayLogin: true
       });
     }
@@ -28,6 +30,7 @@ module.exports = {
         sails.log.verbose('Session refers to a user who no longer exists- did you delete a user, then try to refresh the page with an open tab logged-in as that user?');
         return res.view('common/homepage', {
           pageName: 'Homepage',
+          layout: 'public',
           displayLogin: true
         });
       }
@@ -39,7 +42,7 @@ module.exports = {
           nickname: user.nickname,
           gravatarUrl: user.gravatarUrl
         },
-        layout: 'layouts/private',
+        layout: 'private',
         pageName: 'Dashboard'
       });
 

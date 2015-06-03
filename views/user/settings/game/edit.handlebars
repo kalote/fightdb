@@ -1,0 +1,48 @@
+<div class="container">
+	<div class="row">
+		<form ng-submit="submitEditGameSettingsForm()" id="edit-game-settings-form" class="col-md-6 col-md-offset-3" name="editgamesettings">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2 class="form-edit-heading">Edit your game settings</h2>
+				</div>
+				<div class="panel-body">
+					<div class="col-md-12 alert alert-info">
+						<strong>Info:</strong> You can only select up to 3 characters.
+					</div>
+					{{#each games}}
+					<div class="row">
+						<div class="col-md-12">
+							<a ng-click="selectGame('{{this.id}}','{{@index}}')">
+								{{#if this.favorite}}
+									<img src="/images/game/{{this.picture}}"
+									class="img-responsive gameSelected game center-block" id="gameImg{{@index}}">
+								{{else}}
+									<img src="/images/game/{{this.picture}}"
+									class="img-responsive gameNotSelected game center-block" id="gameImg{{@index}}">
+								{{/if}}
+							</a>
+						</div>
+						<div id="gameChar{{@index}}"
+              class="{{#unless this.favorite}}hidden{{/unless}} someMargin">
+              {{#buildCharList this.characters @index}}{{/buildCharList}}
+						</div>
+					</div>
+					{{/each}}
+
+					<div class="col-md-12 col-sm-12 col-xs-12 someMargin">
+						<button class="btn btn-primary btn-lg btn-block" type="submit">
+							<span ng-show="!editGameSettingsForm.loading">Save game settings</span>
+							<span class="overlord-loading-spinner fa fa-spinner" ng-show="editGameSettingsForm.loading" ></span>
+							<span ng-show="editGameSettingsForm.loading">Saving your game settings...</span>
+						</button>
+					</div>
+
+					<input type="hidden" name="nbFavGame" value="{{nbFavGame}}" ng-model="editGameSettingsForm.nbFavGame" />
+					<input type="hidden" name="nbFavChar" value="{{nbFavChar}}" ng-model="editGameSettingsForm.nbFavChar" />
+					<input type="hidden" name="_csrf" value="{{_csrf}}" ng-model="editGameSettingsForm._csrf" />
+					<input type="hidden" name="userId" ng-init=" editGameSettingsForm.userId = '{{me}}'" ng-model="editGameSettingsForm.userId" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

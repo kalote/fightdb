@@ -14,12 +14,12 @@
 
     <!--Added this so the client has access to the csrf tag and it's grabbed first service side on every page -->
     <script type="text/javascript">
-    window.SAILS_LOCALS = { _csrf: "<%= _csrf %>" };
+    window.SAILS_LOCALS = { _csrf: "{{_csrf}}" };
     </script>
 
   </head>
 
-  <body ng-app="<%=pageName%>Module" ng-controller="<%=pageName%>Controller" ng-cloak>
+  <body ng-app="{{pageName}}Module" ng-controller="{{pageName}}Controller" ng-cloak>
     <!-- Creates the navbar -->
     <nav class="navbar navbar-default navbar-inverse">
       <div class="container">
@@ -35,7 +35,7 @@
           <!-- This is the brand on the left-hand side. -->
           <a class="navbar-brand" href="/"> Fight DB</a>
         </div>
-        <% if (displayLogin) { %>
+        {{#if displayLogin}}
         <div ng-controller="LoginController" class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
           <form ng-submit="submitLoginForm()" class="navbar-form navbar-right">
             <div class="form-group">
@@ -49,14 +49,14 @@
               <span ng-show="loginForm.loading" class="fa fa-spinner"></span>
               <span ng-show="loginForm.loading">Logging in...</span>
             </button>
-            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+            <input type="hidden" name="_csrf" value="{{ _csrf }}" />
           </form>
         </div>
-        <% } %>
+        {{/if}}
       </div>
     </nav>
 
-    <%- body %>
+    {{{ body }}}
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>

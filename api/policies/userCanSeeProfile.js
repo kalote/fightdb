@@ -8,11 +8,13 @@ module.exports = function(req, res, next) {
 
 	// The requested id does not match the user's id,
 	if (!sessionUserMatchesId) {
-		var noRightsError = [{name: 'Authentication error', message: 'You must be logged in to see this page.'}]
 		req.session.flash = {
-			err: noRightsError
+			err: {
+        name: 'Authentication error',
+        message: 'You must be logged in to see this page.'
+      }
 		}
-    	return res.redirect('/login');
+    return res.redirect('/login');
 	}
 	return next();
 };

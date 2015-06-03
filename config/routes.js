@@ -40,12 +40,13 @@ module.exports.routes = {
     view: 'common/signup',
     locals: {
       pageName: 'Signup',
+      layout: 'public',
       displayLogin: false
     }
   },
   'POST /signup': 'UserController.signup',
 
-  // User 
+  // User
   'GET /login': 'UserController.displayLogin',
   'POST /login': 'UserController.login',
   'GET /user/find/:id': 'UserController.find',

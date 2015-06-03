@@ -11,7 +11,7 @@
 
           <!-- checking whether the form "signup" with the "name" property is both $invalid AND $dirty.  If it is insert the "has-error" class on the input field (i.e. insert a red border around the input field)
           -->
-          <div class="control-group form-group col-md-12" 
+          <div class="control-group form-group col-md-12"
           ng-class="{'has-error':signup.name.$invalid &&
                               signup.name.$dirty}">
             <label>Your full name</label>
@@ -29,7 +29,7 @@
 
           <!-- G E N D E R -->
 
-          <div class="control-group form-group col-md-12" 
+          <div class="control-group form-group col-md-12"
           ng-class="{'has-error':signup.gender.$invalid &&
                                 signup.gender.$dirty}">
             <label>Your gender</label>
@@ -48,7 +48,7 @@
 
           <!-- N I C K N A M E -->
 
-          <div class="control-group form-group col-md-12" 
+          <div class="control-group form-group col-md-12"
           ng-class="{'has-error':signup.nickname.$invalid &&
                                 signup.nickname.$dirty}">
             <label>Your nickname</label>
@@ -61,20 +61,14 @@
 
           <!-- G A M E R T A G -->
 
-          <div class="control-group form-group col-md-12" 
-          ng-class="{'has-error':signup.gamertag.$invalid &&
-                                signup.gamertag.$dirty}">
+          <div class="control-group form-group col-md-12">
             <label>Your gamertag</label>
-            <input type="text" class="form-control" placeholder="gameinn" name="gamertag" ng-model="signupForm.gamertag" ng-maxlength="50" required>
-            <span class="help-block has-error" ng-if="signup.gamertag.$dirty">
-              <span ng-show="signup.gamertag.$error.required">Gamertag is required.</span>
-              <span ng-show="signup.gamertag.$error.maxlength">The gamertag cannot be more than 50 characters.</span>
-            </span>
+            <input type="text" class="form-control" placeholder="gameinn" name="gamertag" ng-model="signupForm.gamertag">
           </div>
 
           <!-- E M A I L -->
 
-          <div class="control-group form-group col-md-12" 
+          <div class="control-group form-group col-md-12"
           ng-class="{'has-error':signup.email.$invalid &&
                               signup.email.$dirty}">
             <label>Your email address</label>
@@ -109,7 +103,7 @@
               <span ng-show="signup.confirmation.$error.required">Confirmation password is required.</span>
             </span>
           </div>
-          
+
           <!-- Disable signup button until the form has no errors -->
           <div class="control-group form-group col-md-12">
             <button class="btn btn-primary btn-lg btn-block" type="submit" ng-disabled="signup.$invalid">
@@ -119,7 +113,7 @@
             </button>
           </div>
 
-          <input type="hidden" ng-model="signupForm._csrf" name="_csrf" value="<%= _csrf %>" />
+          <input type="hidden" ng-model="signupForm._csrf" name="_csrf" value="{{_csrf}}" />
         </div>
       </div>
     </form>

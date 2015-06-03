@@ -6,14 +6,12 @@
 					<h2 class="form-login-heading">Please log in...</h2>
 				</div>
 				<div class="panel-body">
-					<% if(flash && flash.err) { %>
+					{{#if flash.err}}
 						<div class="col-md-12 alert alert-danger">
-					<% Object.keys(flash.err).forEach(function(error) { %>
-							<strong><%- flash.err[error].name %>:</strong> 
-							<%- flash.err[error].message %>
-					<% }) %>
+						    <strong>{{flash.err.name}}:</strong>
+                {{flash.err.message}}
 						</div>
-					<% } %>
+					{{/if}}
 					<div class="control-group form-group col-md-12">
 						<label>Email</label>
 						<input ng-model="loginForm.email" type="text" class="form-control" name="email" placeholder="daigo@thebeast.com">
@@ -29,7 +27,7 @@
 							<span ng-show="loginForm.loading">Logging in...</span>
 			            </button>
 					</div>
-					<input type="hidden" name="_csrf" value="<%= _csrf %>" />
+					<input type="hidden" name="_csrf" value="{{_csrf}}" />
 				</div>
 			</div>
 		</form>
