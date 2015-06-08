@@ -12,7 +12,7 @@ angular.module('UserModule').controller('UserController', ['$scope', '$http', 't
 
 		//CSRF header
 		$http.defaults.headers.post['X-CSRF-Token']=document.getElementsByName('_csrf')[0].value;
-		
+
 		// Submit request to Sails.
 		$http.post('/user/update/'+$scope.editForm.userId, $scope.editForm, {
 			withCredentials: true
@@ -52,7 +52,7 @@ angular.module('UserModule').controller('UserController', ['$scope', '$http', 't
 
 		//CSRF header
 		$http.defaults.headers.post['X-CSRF-Token']=document.getElementsByName('_csrf')[0].value;
-		
+
 		// Submit request to Sails.
 		$http.post('/user/settings/update/'+$scope.editSettingsForm.userId, $scope.editSettingsForm, {
 			withCredentials: true
@@ -69,29 +69,36 @@ angular.module('UserModule').controller('UserController', ['$scope', '$http', 't
 			$scope.editSettingsForm.loading = false;
 		})
 	};
-	
+
 	// set-up loading state
 	$scope.editGameSettingsForm = {
 		loading: false,
-		game:'',
+		games:[],
 		nbFavChar: $('input[name=nbFavChar]').val(),
+    nbFavGame: $('input[name=nbFavGame]').val(),
 		characters: []
 	};
 
 	for (var i=0; i<$scope.editGameSettingsForm.nbFavChar; i++){
 		$scope.editGameSettingsForm.characters.push($('input[name=favCharacters'+i+']').val());
 	}
+  for (var j=0; j<$scope.editGameSettingsForm.nbFavGame; j++){
+    $scope.editGameSettingsForm.games.push($('input[name=favGames'+j+']').val());
+  }
 	$scope.cntChar = $scope.editGameSettingsForm.nbFavChar;
+  $scope.cntGames = $scope.editGameSettingsForm.nbFavGame;
 
 	$scope.selectGame = function (gameId, gameNbr){
 		if ( $("#gameImg"+gameNbr).hasClass("gameNotSelected") ) {
 			$("#gameImg"+gameNbr).removeClass("gameNotSelected").addClass("gameSelected");
 			$("#gameChar"+gameNbr).removeClass("hidden");
-			$scope.editGameSettingsForm.game = gameId;
+			$scope.editGameSettingsForm.games.push(gameId);
 		} else {
 			$("#gameImg"+gameNbr).removeClass("gameSelected").addClass("gameNotSelected");
 			$("#gameChar"+gameNbr).addClass("hidden");
-			$scope.editGameSettingsForm.game = '';
+			$scope.cntGams--;
+      var index = $scope.editGameSettingsForm.games.indexOf(gameId);
+      $scope.editGameSettingsForm.games.splice(index, 1);
 		}
 	};
 

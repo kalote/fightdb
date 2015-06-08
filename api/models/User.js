@@ -23,8 +23,7 @@ module.exports = {
 
     // The user's nickname
     gamertag: {
-      type: 'string',
-      required: true
+      type: 'string'
     },
 
     // The user's email address

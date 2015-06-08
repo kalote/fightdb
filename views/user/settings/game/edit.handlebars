@@ -9,26 +9,7 @@
 					<div class="col-md-12 alert alert-info">
 						<strong>Info:</strong> You can only select up to 3 characters.
 					</div>
-					{{#each games}}
-					<div class="row">
-						<div class="col-md-12">
-							<a ng-click="selectGame('{{this.id}}','{{@index}}')">
-								{{#if this.favorite}}
-									<img src="/images/game/{{this.picture}}"
-									class="img-responsive gameSelected game center-block" id="gameImg{{@index}}">
-								{{else}}
-									<img src="/images/game/{{this.picture}}"
-									class="img-responsive gameNotSelected game center-block" id="gameImg{{@index}}">
-								{{/if}}
-							</a>
-						</div>
-						<div id="gameChar{{@index}}"
-              class="{{#unless this.favorite}}hidden{{/unless}} someMargin">
-              {{#buildCharList this.characters @index}}{{/buildCharList}}
-						</div>
-					</div>
-					{{/each}}
-
+					{{#buildGameList games}}{{/buildGameList}}
 					<div class="col-md-12 col-sm-12 col-xs-12 someMargin">
 						<button class="btn btn-primary btn-lg btn-block" type="submit">
 							<span ng-show="!editGameSettingsForm.loading">Save game settings</span>

@@ -9,11 +9,13 @@ module.exports = {
 
 	//Display the user settings information we have for the user
 	index: function (req,res){
-		var userObj = {};
 		UserSettings.findOrCreate({user: req.param('id')}, function foundUser(err, userSettings) {
 			if (err) return res.negotiate(err);
-			//if no userSettings, set everything to empty
-      console.log(userObj);
+
+      //update user with userSettings ID
+      User.update(req.param('id'), {userSettings: userSettings.id}, function (err, updated){
+        if (err) return res.negotiate(err);
+      });
 			res.view('user/settings/find', {
 				layout: 'private',
 				pageName: 'User',

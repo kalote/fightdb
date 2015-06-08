@@ -21,8 +21,7 @@ module.exports = {
   	},
   	//link with users
   	users:{
-  		collection: 'usergamesettings',
-  		via: 'games'
+  		type: 'array'
   	}
   }
 };

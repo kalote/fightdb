@@ -23,10 +23,6 @@ module.exports = {
   	},
   	game: {
   		model: 'game'
-  	},
-  	player: {
-  		collection: 'usergamesettings',
-  		via: 'favoriteCharacters'
   	}
   }
 };

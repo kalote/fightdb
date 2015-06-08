@@ -11,17 +11,15 @@ module.exports = {
   	//games collection
   	//many-to-many
   	games:{
-  		collection: 'game',
-      via: 'users'
+  		type: 'array'
   	},
   	//favorite characters
   	//many-to-many
   	favoriteCharacters: {
-  		collection: 'character',
-  		via: 'player'
+  		type: 'array'
   	},
   	//user link
-    //one-to-one  
+    //one-to-one
     user: {
       model: 'user'
     }

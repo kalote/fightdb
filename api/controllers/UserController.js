@@ -18,11 +18,7 @@ module.exports = {
 
   //login function
   login: function (req, res) {
-
-    // Try to look up user using the provided email address
-    User.findOne({
-      email: req.param('email')
-    }, function foundUser(err, user) {
+    User.findOne({email: req.param('email')}, function foundUser(err, user) {
       if (err) return res.negotiate(err);
       if (!user) return res.notFound();
 
@@ -44,11 +40,7 @@ module.exports = {
         },
 
         success: function (){
-
-          // Store user id in the user session
           req.session.me = user.id;
-
-          // All done- let the client know that everything worked.
           return res.ok();
         }
       });
@@ -79,23 +71,19 @@ module.exports = {
             return res.negotiate(err);
           },
           success: function(gravatarUrl) {
-            // Create a User with the params sent from
-            // the sign-up form --> signup.ejs
             User.create({
               name: req.param('name'),
               nickname: req.param('nickname'),
               email: req.param('email'),
               gender: req.param('gender'),
-              gamertag: req.param('gamertag'),
+              gamertag: req.param('gamertag') || '',
               status: 'online',
               encryptedPassword: encryptedPassword,
               lastLoggedIn: new Date(),
               gravatarUrl: gravatarUrl
             }, function userCreated(err, newUser) {
               if (err) {
-                //[ 'originalError', '_e', 'rawStack', 'details', 'model' ]
-                //console.log("---------- original -----");
-                //console.log(err.originalError.err);
+                console.log(err);
                 var errMsg = JSON.stringify(err.originalError.err);
 
                 // If this is a uniqueness error about the email attribute,
@@ -111,8 +99,6 @@ module.exports = {
                   && errMsg.indexOf("nickname") != -1) {
                   return res.nicknameInUse();
                 }
-
-                // Otherwise, send back something reasonable as our error response.
                 return res.negotiate(err);
               }
 
@@ -202,10 +188,6 @@ module.exports = {
 
     User.update(req.param('id'), userObj, function userUpdated(err) {
       if (err) {
-        //[ 'originalError', '_e', 'rawStack', 'details', 'model' ]
-        //console.log("---------- original -----");
-        //console.log(err.originalError);
-
         // If this is a uniqueness error about the email attribute,
         // send back an easily parseable status code.
         var errMsg = JSON.stringify(err.originalError.err);

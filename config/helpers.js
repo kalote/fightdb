@@ -77,6 +77,32 @@ Handlebars.registerHelper('buildCharList', function(characters, gameIndex) {
   return out;
 });
 
+Handlebars.registerHelper('buildGameList', function(games) {
+  var cntGame=0,
+      out='',
+      gameCount=games.length,
+      className='';
+  for (var i=0; i<gameCount; i++){
+    out += '<div class="row"><div class="col-md-12">';
+    out += '<a ng-click="selectGame(\''+games[i].id+'\',\''+i+'\')">';
+    if (games[i].favorite) {
+      out += '<input type="hidden" name="favGames'+cntGame+'" value="'+games[i].id+'" />'+
+        '<img src="/images/game/'+games[i].picture+'" class="img-responsive gameSelected game center-block" '+
+        'id="gameImg'+i+'">';
+      cntGame++;
+    } else {
+      out += '<img src="/images/game/'+games[i].picture+'" '+
+        'class="img-responsive gameNotSelected game center-block" id="gameImg'+i+'">';
+      className='hidden';
+    }
+    out += '</a></div>'+
+      '<div id="gameChar'+i+'" class="'+className+' someMargin">';
+    out += Handlebars.helpers.buildCharList(games[i].characters,i);
+    out += '</div></div>';
+  }
+  return out;
+});
+
 Handlebars.registerHelper('debug', function(optionalValue) {
   console.log('Value');
   console.log('====================');
