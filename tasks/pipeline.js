@@ -37,6 +37,7 @@ var jsFilesToInject = [
   'js/private/dashboard/DashboardModule.js',
   'js/public/homepage/HomepageModule.js',
   'js/private/user/UserModule.js',
+  'js/private/user/StatisticsModule.js',
   'js/**/*.js'
 ];
 

@@ -210,8 +210,13 @@ module.exports.bootstrap = function(cb) {
 			health:	1100,
 			stun: 1100,
 			picture: 'zangief.gif'
-		}];
-	
+		}],
+    baseGroups = [{
+      name: 'Hong Kong'
+    },{
+      name: 'World'
+    }];
+
 	Game.count().exec(function(err, count) {
 		if (err) {
 			sails.log.error('Already have data.');
@@ -233,18 +238,41 @@ module.exports.bootstrap = function(cb) {
 					for (var i in chars){
 						charsId[i] = chars[i].id;
 					}
+          //we update the game with charId
 					Game.update(game.id, {characters: charsId}, function gameUpdated(err) {
 						if (err) return cb(err);
-						//everything went well, call cb()
-						cb();
+            Group.count().exec(function(err, count) {
+              if (err) {
+                sails.log.error('Already have data.');
+                return cb(err);
+              }
+              if (count == 0){
+                Group.create(baseGroups, function groupCreated(err, group) {
+                  if (err) return cb(err);
+                  //everything went well, call cb()
+                  cb();
+                });
+              }
+            });
 					});
-				});		
+				});
 			})
-		} else 
-			return cb();
+		} else {
+      Group.count().exec(function(err, count) {
+        if (err) {
+          sails.log.error('Already have data.');
+          return cb(err);
+        }
+        if (count == 0){
+          //we create the groups
+          Group.create(baseGroups, function groupCreated(err, group) {
+            if (err) return cb(err);
+            //everything went well, call cb()
+            cb();
+          });
+        } else
+          cb();
+      });
+    }
 	});
-
-	// It's very important to trigger this callback method when you are finished
-	// with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-	//cb();
 };

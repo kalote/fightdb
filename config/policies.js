@@ -42,7 +42,11 @@ module.exports.policies = {
 
   userGameSettings: {
     '*': "userCanSeeProfile"
-  }  
+  },
+
+  statistics: {
+    '*': "userCanSeeProfile"
+  }
 
   /***************************************************************************
   *                                                                          *

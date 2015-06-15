@@ -66,6 +66,9 @@ module.exports.routes = {
   'GET /user/settings/game/edit/:id': 'UserGameSettingsController.edit',
   'POST /user/settings/game/update/:id': 'UserGameSettingsController.update',
 
+  //Statistics
+  'GET /statistics/:id': 'StatisticsController.index',
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
