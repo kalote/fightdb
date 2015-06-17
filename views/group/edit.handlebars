@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row">
+		<form ng-submit="submitGroupForm()" id="edit-group-form" class="col-md-6 col-md-offset-3" name="submitgroup">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2 class="form-edit-heading">Group subscription</h2>
+				</div>
+				<div class="panel-body">
+					{{#each groups}}
+          <div class="col-md-12">
+            <div class="alert {{#if this.subscribed}}alert-success{{else}}alert-info{{/if}}"
+                ng-click="addGroup('{{this.id}}')"
+                id="group{{this.id}}"
+                style="cursor: pointer">
+              <div class="pull-left">{{this.name}}</div>
+              <div class="text-right">{{#count this.members}}{{/count}} member(s)</div>
+            </div>
+          </div>
+          {{/each}}
+
+					<div class="control-group form-group col-md-12">
+						<button class="btn btn-primary btn-lg btn-block" type="submit">
+							<span ng-show="!submitGroup.loading">Save group settings</span>
+							<span class="overlord-loading-spinner fa fa-spinner" ng-show="submitGroup.loading" ></span>
+							<span ng-show="submitGroup.loading">Saving your group settings...</span>
+						</button>
+					</div>
+
+					<input type="hidden" name="_csrf" value="{{_csrf}}" ng-model="submitGroup._csrf" />
+          <input type="hidden" name="setup" value="{{setup.step}}" ng-model="submitGroup.setup" />
+					<input type="hidden" name="userId" ng-init=" submitGroup.userId = '{{me.id}}'" ng-model="submitGroup.userId" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

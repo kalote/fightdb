@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="stepwizard col-md-6">
+      <div class="stepwizard-row">
+        <div class="stepwizard-step">
+          <button
+            type="button"
+            class="btn {{#compare this.step '>=' 1}}btn-primary{{else}}btn-default{{/compare}} btn-circle"
+            disabled="disabled">1</button>
+          <p>Social information</p>
+        </div>
+        <div class="stepwizard-step">
+          <button
+            type="button"
+            class="btn {{#compare this.step '>=' 2}}btn-primary{{else}}btn-default{{/compare}} btn-circle"
+            disabled="disabled">2</button>
+          <p>Game selection</p>
+        </div>
+        <div class="stepwizard-step">
+          <button
+            type="button"
+            class="btn {{#compare this.step '>=' 3}}btn-primary{{else}}btn-default{{/compare}} btn-circle"
+            disabled="disabled">3</button>
+          <p>Group selection</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+      <div class="alert alert-info">
+        <span>Set up your account.<br />
+          <strong>Note that you'll be able to edit it later.</strong>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

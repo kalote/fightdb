@@ -45,7 +45,9 @@ module.exports = {
 			res.view('user/settings/edit', {
 				layout: 'private',
 				pageName: 'User',
-				me: req.param('id'),
+				me: {
+          id: req.param('id')
+        },
 				settings: userObj
 			});
 		});

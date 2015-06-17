@@ -46,6 +46,11 @@ module.exports.routes = {
   },
   'POST /signup': 'UserController.signup',
 
+  // Setup account
+  'GET /user/setup/:id': 'SetupController.setupfirst',
+  'GET /user/game/setup/:id': 'SetupController.setupSecond',
+  'GET /group/setup/:id': 'SetupController.setupThird',
+
   // User
   'GET /login': 'UserController.displayLogin',
   'POST /login': 'UserController.login',
@@ -66,8 +71,14 @@ module.exports.routes = {
   'GET /user/settings/game/edit/:id': 'UserGameSettingsController.edit',
   'POST /user/settings/game/update/:id': 'UserGameSettingsController.update',
 
-  //Statistics
+  // Statistics
   'GET /statistics/:id': 'StatisticsController.index',
+
+  // Group
+  'GET /group/find/:id': 'GroupController.index',
+  'GET /group/edit/:id': 'GroupController.edit',
+  'POST /group/update/:id': 'GroupController.update',
+  'POST /group/updategroup': 'GroupController.updategroup',
 
   /***************************************************************************
   *                                                                          *

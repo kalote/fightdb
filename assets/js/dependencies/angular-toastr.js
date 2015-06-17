@@ -70,7 +70,7 @@ angular.module('toastr', [])
     newestOnTop: true,
     positionClass: 'toast-top-right',
     tapToDismiss: true,
-    timeOut: 5000,
+    timeOut: 2000,
     titleClass: 'toast-title',
     toastClass: 'toast'
   })

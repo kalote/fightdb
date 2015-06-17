@@ -11,14 +11,14 @@ angular.module('SignupModule').controller('SignupController', ['$scope', '$http'
 		$scope.signupForm.loading = true;
 
 		//CSRF header
-		$http.defaults.headers.post['X-CSRF-Token']=document.getElementsByName('_csrf')[0].value;
-		
+		$http.defaults.headers.post['X-CSRF-Token']=$('input[name=_csrf]').val();
+
 		// Submit request to Sails.
 		$http.post('/signup', $scope.signupForm, {
 			withCredentials: true
 		})
 		.then(function onSuccess(sailsResponse){
-			window.location = '/';
+			window.location = '/user/setup/'+sailsResponse.data.id;
 		})
 		.catch(function onError(sailsResponse){
 

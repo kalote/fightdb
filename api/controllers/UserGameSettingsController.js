@@ -66,7 +66,9 @@ module.exports = {
         res.view('user/settings/game/edit', {
           layout: 'private',
           pageName: 'User',
-          me: req.param('id'),
+          me: {
+            id: req.param('id')
+          },
           games: games,
           nbFavGame: nbFavGame,
           nbFavChar: nbFavChar

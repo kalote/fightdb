@@ -41,7 +41,14 @@ module.exports = {
 
         success: function (){
           req.session.me = user.id;
-          return res.ok();
+          user.lastLoggedIn = new Date();
+          user.status = "online";
+          user.save(function(err,s){
+            for (var i in user.groups){
+              Group.message(user.groups[i],{username: user.nickname,status: "online"});
+            }
+            return res.ok();
+          });
         }
       });
     });
@@ -128,6 +135,9 @@ module.exports = {
       if (!user) {
         sails.log.verbose('Session refers to a user who no longer exists.');
         return res.backToHomePage();
+      }
+      for (var i in user.groups){
+        Group.message(user.groups[i].id,{username: user.nickname,status: "offline"});
       }
 
       // Wipe out the session (log out)

@@ -8,23 +8,23 @@
 				<div class="panel-body">
 					<!-- F A C E B O O K -->
 					<div class="control-group form-group col-md-12">
-						<label>Your facebook</label>
+						<label>Your facebook username</label>
 
-						<input type="text" class="form-control" placeholder="www.facebook.com/Daigo" name="facebook" ng-model="editSettingsForm.facebook" ng-init="editSettingsForm.facebook = '{{settings.facebook}}'">
+						<input type="text" class="form-control" placeholder="DaigoFacebook" name="facebook" ng-model="editSettingsForm.facebook" ng-init="editSettingsForm.facebook = '{{settings.facebook}}'">
 					</div>
 
 					<!-- T W I T T E R -->
 					<div class="control-group form-group col-md-12">
-						<label>Your twitter</label>
+						<label>Your twitter username</label>
 
-						<input type="text" class="form-control" placeholder="www.twitter.com/Daigo" name="twitter" ng-model="editSettingsForm.twitter" ng-init="editSettingsForm.twitter = '{{settings.twitter}}'">
+						<input type="text" class="form-control" placeholder="DaigoTwitter" name="twitter" ng-model="editSettingsForm.twitter" ng-init="editSettingsForm.twitter = '{{settings.twitter}}'">
 					</div>
 
 					<!-- T W I T C H -->
 					<div class="control-group form-group col-md-12">
-						<label>Your twitch</label>
+						<label>Your twitch username</label>
 
-						<input type="text" class="form-control" placeholder="www.twitch.com/Daigo" name="twitch" ng-model="editSettingsForm.twitch" ng-init="editSettingsForm.twitch = '{{settings.twitch}}'">
+						<input type="text" class="form-control" placeholder="DaigoTwitch" name="twitch" ng-model="editSettingsForm.twitch" ng-init="editSettingsForm.twitch = '{{settings.twitch}}'">
 					</div>
 
 					<div class="control-group form-group col-md-12">
@@ -36,7 +36,8 @@
 					</div>
 
 					<input type="hidden" name="_csrf" value="{{_csrf}}" ng-model="editSettingsForm._csrf" />
-					<input type="hidden" name="userId" ng-init=" editSettingsForm.userId = '{{me}}'" ng-model="editSettingsForm.userId" />
+          <input type="hidden" name="setup" value="{{setup.step}}" ng-model="editSettingsForm.setup" />
+					<input type="hidden" name="userId" ng-init=" editSettingsForm.userId = '{{me.id}}'" ng-model="editSettingsForm.userId" />
 				</div>
 			</div>
 		</form>

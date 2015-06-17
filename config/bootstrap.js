@@ -212,9 +212,11 @@ module.exports.bootstrap = function(cb) {
 			picture: 'zangief.gif'
 		}],
     baseGroups = [{
-      name: 'Hong Kong'
+      name: 'Hong Kong',
+      members: []
     },{
-      name: 'World'
+      name: 'World',
+      members: []
     }];
 
 	Game.count().exec(function(err, count) {

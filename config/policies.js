@@ -46,6 +46,10 @@ module.exports.policies = {
 
   statistics: {
     '*': "userCanSeeProfile"
+  },
+
+  setup: {
+    '*': "userCanSeeProfile"
   }
 
   /***************************************************************************

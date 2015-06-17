@@ -13,8 +13,7 @@ module.exports = {
   		required: true
   	},
   	members: {
-  		collection: 'user',
-  		via: 'groups'
+  		type: 'array'
   	}
   }
 };

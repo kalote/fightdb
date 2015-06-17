@@ -11,7 +11,7 @@ angular.module('UserModule').controller('UserController', ['$scope', '$http', 't
 		$scope.editForm.loading = true;
 
 		//CSRF header
-		$http.defaults.headers.post['X-CSRF-Token']=document.getElementsByName('_csrf')[0].value;
+		$http.defaults.headers.post['X-CSRF-Token']=$('input[name=_csrf]').val();
 
 		// Submit request to Sails.
 		$http.post('/user/update/'+$scope.editForm.userId, $scope.editForm, {
@@ -51,15 +51,17 @@ angular.module('UserModule').controller('UserController', ['$scope', '$http', 't
 		$scope.editSettingsForm.loading = true;
 
 		//CSRF header
-		$http.defaults.headers.post['X-CSRF-Token']=document.getElementsByName('_csrf')[0].value;
+		$http.defaults.headers.post['X-CSRF-Token']=$('input[name=_csrf]').val();
 
 		// Submit request to Sails.
 		$http.post('/user/settings/update/'+$scope.editSettingsForm.userId, $scope.editSettingsForm, {
 			withCredentials: true
 		})
 		.then(function onSuccess(sailsResponse){
-			//toastr.success('Your information has been updated successfully', 'Success!');
-			window.location = '/user/settings/'+sailsResponse.data.id;
+      if ($('input[name=setup]').val() === "1")
+        window.location = '/user/game/setup/'+sailsResponse.data.id;
+      else
+        window.location = '/user/settings/'+sailsResponse.data.id;
 		})
 		.catch(function onError(sailsResponse){
 			toastr.error('An error occured: '+sailsResponse.err, 'Error');
@@ -128,14 +130,16 @@ angular.module('UserModule').controller('UserController', ['$scope', '$http', 't
 		$scope.editGameSettingsForm.loading = true;
 
 		//CSRF header
-		$http.defaults.headers.post['X-CSRF-Token']=document.getElementsByName('_csrf')[0].value;
+		$http.defaults.headers.post['X-CSRF-Token']=$('input[name=_csrf]').val();
 		// Submit request to Sails.
 		$http.post('/user/settings/game/update/'+$scope.editGameSettingsForm.userId, $scope.editGameSettingsForm, {
 			withCredentials: true
 		})
 		.then(function onSuccess(sailsResponse){
-			//toastr.success('Your information has been updated successfully', 'Success!');
-			window.location = '/user/settings/game/'+sailsResponse.data.id;
+			if ($('input[name=setup]').val() === "2")
+  			window.location = '/group/setup/'+sailsResponse.data.id;
+      else
+        window.location = '/user/settings/game/'+sailsResponse.data.id;
 		})
 		.catch(function onError(sailsResponse){
 			toastr.error('An error occured: '+sailsResponse.err, 'Error');

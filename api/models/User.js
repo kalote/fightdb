@@ -78,8 +78,7 @@ module.exports = {
     //Group collection
     //many-to-many
     groups: {
-      collection: 'group',
-      via: 'members'
+      type: 'array'
     }
   }
 };
