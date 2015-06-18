@@ -21,7 +21,10 @@ module.exports = {
 
     // Otherwise, look up the logged-in user and show the logged-in view,
     // bootstrapping basic user data in the HTML sent from the server
-    User.findOne(req.session.me, function (err, user){
+    User.findOne(req.session.me)
+      .populate('userSettings')
+      .populate('userGameSettings')
+      .exec(function (err, user){
       if (err) {
         return res.negotiate(err);
       }
@@ -34,13 +37,17 @@ module.exports = {
           displayLogin: true
         });
       }
+
       return res.view('common/dashboard', {
         me: {
           id: user.id,
           name: user.name,
           email: user.email,
           nickname: user.nickname,
-          gravatarUrl: user.gravatarUrl
+          gravatarUrl: user.gravatarUrl,
+          facebook: user.userSettings.facebook,
+          twitter: user.userSettings.twitter,
+          twitch: user.userSettings.twitch,
         },
         layout: 'private',
         pageName: 'Dashboard'

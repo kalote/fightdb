@@ -34,6 +34,12 @@ module.exports = {
     //create userGameSettings
     UserGameSettings.create({user: req.param('id')}, function (err, ugs) {
       if (err) res.negotiate(err);
+
+      //update user with userSettings ID
+      User.update(req.param('id'), {userGameSettings: ugs.id}, function (err, updated){
+        if (err) return res.negotiate(err);
+      });
+
       //find games
       Game.find()
       .populate('characters')

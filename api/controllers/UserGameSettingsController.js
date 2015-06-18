@@ -12,6 +12,12 @@ module.exports = {
 	index: function (req,res){
     UserGameSettings.findOrCreate({user: req.param('id')}, function (err, ugs) {
       if (err) res.negotiate(err);
+
+      //update user with userGameSettings ID
+      User.update(req.param('id'), {userGameSettings: ugs.id}, function (err, updated){
+        if (err) return res.negotiate(err);
+      });
+
       if (ugs.games && ugs.favoriteCharacters){
         Game.find({id: ugs.games}, function(err, favGame) {
           _.each(favGame, function (key, val){

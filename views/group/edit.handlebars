@@ -8,10 +8,9 @@
 				<div class="panel-body">
 					{{#each groups}}
           <div class="col-md-12">
-            <div class="alert {{#if this.subscribed}}alert-success{{else}}alert-info{{/if}}"
+            <div class="pointer alert {{#if this.subscribed}}alert-success{{else}}alert-info{{/if}}"
                 ng-click="addGroup('{{this.id}}')"
-                id="group{{this.id}}"
-                style="cursor: pointer">
+                id="group{{this.id}}">
               <div class="pull-left">{{this.name}}</div>
               <div class="text-right">{{#count this.members}}{{/count}} member(s)</div>
             </div>

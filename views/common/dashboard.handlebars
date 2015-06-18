@@ -4,7 +4,30 @@
       <img src="{{me.gravatarUrl}}"><br />
       Welcome {{me.name}} !
     </h1>
-    <p class="lead">Here's your main entry point for all fightDB's features</p>
+    {{#if me.facebook}}
+    <span class="social-facebook">
+      <a class="btn-lg btn btn-default" href="http://www.facebook.com/{{me.facebook}}" target="_blank">
+        <span class="fa fa-facebook-square"></span> {{me.facebook}}
+      </a>
+    </span>
+    {{/if}}
+    {{#if me.twitter}}
+    <span class="social-twitter">
+      <a class="btn-lg btn btn-default" href="http://www.twitter.com/{{me.twitter}}" target="_blank">
+        <span class="fa fa-twitter-square"></span> {{me.twitter}}
+      </a>
+    </span>
+    {{/if}}
+    {{#if me.twitch}}
+    <span class="social-twitch">
+      <a class="btn-lg btn btn-default" href="http://www.twitch.com/{{me.twitch}}" target="_blank">
+        <span class="fa fa-twitch"></span> {{me.twitch}}
+      </a>
+    </span>
+    {{/if}}
+    <p class="call-to-action">
+      <a class="btn btn-primary btn-lg" href="/match-mode">Start a match !</a>
+    </p>
   </div>
   <div class="row">
     <!-- MATCH MODE -->
