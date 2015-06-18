@@ -61,6 +61,11 @@ module.exports.bootstrap = function(cb) {
 			stun: 950,
 			picture: 'viper.gif'
 		},{
+      name: 'Decapre',
+      health: 950,
+      stun: 950,
+      picture: 'decapre.gif'
+    },{
 			name: 'Dan',
 			health:	1000,
 			stun: 900,
@@ -81,11 +86,21 @@ module.exports.bootstrap = function(cb) {
 			stun: 1050,
 			picture: 'dudley.gif'
 		},{
+      name: 'Hugo',
+      health: 1100,
+      stun: 1100,
+      picture: 'hugo.gif'
+    },{
 			name: 'Honda',
 			health:	1050,
 			stun: 1100,
 			picture: 'honda.gif'
 		},{
+      name: 'Elena',
+      health: 950,
+      stun: 900,
+      picture: 'elena.gif'
+    },{
 			name: 'ElFuerte',
 			health:	900,
 			stun: 1000,
@@ -156,6 +171,11 @@ module.exports.bootstrap = function(cb) {
 			stun: 950,
 			picture: 'oni.gif'
 		},{
+      name: 'Rolento',
+      health: 1000,
+      stun: 950,
+      picture: 'rolento.gif'
+    },{
 			name: 'Rose',
 			health:	950,
 			stun: 1000,

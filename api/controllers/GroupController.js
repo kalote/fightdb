@@ -57,16 +57,10 @@ module.exports = {
       if (err) return res.negotiate(err);
       if (g.members.indexOf(uid)>-1) {
         g.members.slice(g.members.indexOf(uid),1);
-        Group.unsubscribe(req.socket,g);
-        Group.publishUpdate(g.id, {members: g.members.length,action: "unsubscribe"});
       } else {
         g.members.push(uid);
-        Group.subscribe(req.socket,g);
-        Group.publishUpdate(g.id, {members: g.members.length,action: "subscribe"});
       }
-      g.save(function(err,s){
-        console.log(s);
-      });
+      g.save(function(err,s){});
       return res.ok();
     });
   },
