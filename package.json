@@ -30,7 +30,8 @@
   },
   "scripts": {
     "start": "node app.js",
-    "debug": "node debug app.js"
+    "debug": "node debug app.js",
+    "test": "PORT=9999 NODE_ENV=test mocha -R spec -b --recursive"
   },
   "main": "app.js",
   "repository": {
@@ -38,5 +39,12 @@
     "url": "git://github.com/Kalote/fightdb.git"
   },
   "author": "Kalote",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "barrels": "^1.4.1",
+    "mocha": "^2.2.5",
+    "sails-memory": "^0.10.4",
+    "should": "^7.0.1",
+    "supertest": "^1.0.1"
+  }
 }

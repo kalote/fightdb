@@ -54,69 +54,43 @@ module.exports = {
 
   //signup form
   signup: function(req, res) {
+    User.create({
+      name: req.param('name'),
+      nickname: req.param('nickname'),
+      email: req.param('email'),
+      gender: req.param('gender'),
+      gamertag: req.param('gamertag') || '',
+      status: 'online',
+      encryptedPassword: req.param('password'),
+      lastLoggedIn: new Date(),
+    }, function userCreated(err, newUser) {
+      if (err) {
+        console.log(err);
+        var errMsg = JSON.stringify(err.originalError.err);
 
-    var Passwords = require('machinepack-passwords');
+        // If this is a uniqueness error about the email attribute,
+        // send back an easily parseable status code.
+        if (err.originalError.code == 11000 && errMsg.indexOf("duplicate key") != -1
+          && errMsg.indexOf("email") != -1) {
+          return res.emailAddressInUse();
+        }
 
-    // Encrypt a string using the BCrypt algorithm.
-    Passwords.encryptPassword({
-      password: req.param('password'),
-      difficulty: 10,
-    }).exec({
-      // An unexpected error occurred.
-      error: function(err) {
+        // If this is a uniqueness error about the nickname attribute,
+        // send back an easily parseable status code.
+        if (err.originalError.code == 11000 && errMsg.indexOf("duplicate key") != -1
+          && errMsg.indexOf("nickname") != -1) {
+          return res.nicknameInUse();
+        }
         return res.negotiate(err);
-      },
-      // OK.
-      success: function(encryptedPassword) {
-        require('machinepack-gravatar').getImageUrl({
-          emailAddress: req.param('email')
-        }).exec({
-          error: function(err) {
-            return res.negotiate(err);
-          },
-          success: function(gravatarUrl) {
-            User.create({
-              name: req.param('name'),
-              nickname: req.param('nickname'),
-              email: req.param('email'),
-              gender: req.param('gender'),
-              gamertag: req.param('gamertag') || '',
-              status: 'online',
-              encryptedPassword: encryptedPassword,
-              lastLoggedIn: new Date(),
-              gravatarUrl: gravatarUrl
-            }, function userCreated(err, newUser) {
-              if (err) {
-                console.log(err);
-                var errMsg = JSON.stringify(err.originalError.err);
-
-                // If this is a uniqueness error about the email attribute,
-                // send back an easily parseable status code.
-                if (err.originalError.code == 11000 && errMsg.indexOf("duplicate key") != -1
-                  && errMsg.indexOf("email") != -1) {
-                  return res.emailAddressInUse();
-                }
-
-                // If this is a uniqueness error about the nickname attribute,
-                // send back an easily parseable status code.
-                if (err.originalError.code == 11000 && errMsg.indexOf("duplicate key") != -1
-                  && errMsg.indexOf("nickname") != -1) {
-                  return res.nicknameInUse();
-                }
-                return res.negotiate(err);
-              }
-
-              // Log user in
-              req.session.me = newUser.id;
-
-              // Send back the id of the new user
-              return res.json({
-                id: newUser.id
-              });
-            });
-          }
-        });
       }
+
+      // Log user in
+      req.session.me = newUser.id;
+
+      // Send back the id of the new user
+      return res.json({
+        id: newUser.id
+      });
     });
   },
 

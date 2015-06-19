@@ -5,6 +5,9 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
+var Passwords = require('machinepack-passwords'),
+    Gravatar = require('machinepack-gravatar');
+
 module.exports = {
 
   attributes: {
@@ -80,5 +83,31 @@ module.exports = {
     groups: {
       type: 'array'
     }
+  },
+
+  beforeCreate: function (user, cb) {
+    //Password encryption
+    Passwords.encryptPassword({
+      password: user.encryptedPassword,
+      difficulty: 10,
+    }).exec(function (err, encPwd) {
+      if (err) {
+        console.log(err);
+        return cb(err);
+      }
+      user.encryptedPassword = encPwd;
+      //If succes, retrieve the Gravatar img
+      Gravatar.getImageUrl({
+        emailAddress: user.email
+      }).exec(function (err, imgUrl){
+        if (err) {
+          console.log(err);
+          return cb(err);
+        }
+        //If success, create user
+        user.gravatarUrl = imgUrl;
+        cb();
+      });
+    });
   }
 };
