@@ -50,6 +50,10 @@ module.exports.policies = {
 
   setup: {
     '*': "userCanSeeProfile"
+  },
+
+  matchmode: {
+    index: "userCanSeeProfile"
   }
 
   /***************************************************************************

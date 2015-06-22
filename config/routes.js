@@ -80,6 +80,23 @@ module.exports.routes = {
   'POST /group/update/:id': 'GroupController.update',
   'POST /group/updategroup': 'GroupController.updategroup',
 
+  // MatchMode
+  'GET /match-mode/:id': 'MatchmodeController.index',
+  // |-- Opponent (get list / set opponent)
+  'POST /match-mode/get/opponent': 'MatchmodeController.getOpponent',
+  'POST /match-mode/set/opponent': 'MatchmodeController.setOpponent',
+  // |-- Character (get user fav chars for both users / set char)
+  'POST /match-mode/get/char': 'MatchmodeController.getChar',
+  'POST /match-mode/set/char': 'MatchmodeController.setChar',
+  // |-- Game Type (set type between casual & tournament)
+  'POST /match-mode/set/type': 'MatchmodeController.setType',
+  // |-- Start match
+  'POST /match-mode/start': 'MatchmodeController.startGame',
+  // |-- End match
+  'POST /match-mode/end': 'MatchmodeController.endGame',
+  // |-- Game (only needed if more than 1 game) TODO
+  'POST /match-mode/get/game': 'MatchmodeController.getGame',
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
