@@ -14,6 +14,7 @@ before(function (done) {
         adapter: 'sails-memory'
       }
     },
+    csrf: false,
     models: {
       connection: 'test',
       migrate: 'drop'

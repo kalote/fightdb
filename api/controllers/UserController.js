@@ -65,21 +65,33 @@ module.exports = {
       lastLoggedIn: new Date(),
     }, function userCreated(err, newUser) {
       if (err) {
-        console.log(err);
-        var errMsg = JSON.stringify(err.originalError.err);
-
-        // If this is a uniqueness error about the email attribute,
-        // send back an easily parseable status code.
-        if (err.originalError.code == 11000 && errMsg.indexOf("duplicate key") != -1
-          && errMsg.indexOf("email") != -1) {
-          return res.emailAddressInUse();
-        }
-
-        // If this is a uniqueness error about the nickname attribute,
-        // send back an easily parseable status code.
-        if (err.originalError.code == 11000 && errMsg.indexOf("duplicate key") != -1
-          && errMsg.indexOf("nickname") != -1) {
-          return res.nicknameInUse();
+        //sails-disk or sails-memory error management
+        if (err.invalidAttributes) {
+          if (err.invalidAttributes &&
+            err.invalidAttributes.email &&
+            err.invalidAttributes.email[0] &&
+            err.invalidAttributes.email[0].rule === 'unique') {
+              return res.emailAddressInUse();
+          }
+          if (err.invalidAttributes &&
+            err.invalidAttributes.nickname &&
+            err.invalidAttributes.nickname[0] &&
+            err.invalidAttributes.nickname[0].rule === 'unique') {
+              return res.nicknameInUse();
+          }
+        //mongodb error management
+        } else {
+          var errMsg = JSON.stringify(err.originalError.err);
+          if (err.originalError.code == 11000 &&
+            errMsg.indexOf("duplicate key") != -1 &&
+            errMsg.indexOf("email") != -1) {
+              return res.emailAddressInUse();
+          }
+          if (err.originalError.code == 11000 &&
+            errMsg.indexOf("duplicate key") != -1 &&
+            errMsg.indexOf("nickname") != -1) {
+              return res.nicknameInUse();
+          }
         }
         return res.negotiate(err);
       }

@@ -1,17 +1,10 @@
 var request = require('supertest');
 
 describe('User (Model)', function() {
-  before(function(done) {
-    User.create({
-      name: 'Johann BICH',
-      nickname: 'kalote',
-      gamertag: 'kalote',
-      gender: 'Male',
-      email: 'johannbich@gmail.com',
-      encryptedPassword: 'password'
-    }).exec(function(err, user) {
-      if (err) done(err);
-      done();
+  it ('should have a user in db', function(done){
+    User.findByEmail('johannbich@gmail.com').exec(function(err, user){
+      user.length.should.not.be.eql(0);
+      done(err);
     });
   });
   it ('should encrypt password', function(done) {

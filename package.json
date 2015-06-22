@@ -31,7 +31,8 @@
   "scripts": {
     "start": "node app.js",
     "debug": "node debug app.js",
-    "test": "PORT=9999 NODE_ENV=test mocha -R spec -b --recursive"
+    "test": "PORT=9999 NODE_ENV=test mocha -R spec -b --recursive",
+    "cover": "$(npm bin)/istanbul cover _mocha test/**/*.js --dir test_coverage"
   },
   "main": "app.js",
   "repository": {
@@ -42,6 +43,7 @@
   "license": "",
   "devDependencies": {
     "barrels": "^1.4.1",
+    "istanbul": "^0.3.15",
     "mocha": "^2.2.5",
     "sails-memory": "^0.10.4",
     "should": "^7.0.1",
