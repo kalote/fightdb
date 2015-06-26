@@ -52,6 +52,12 @@ module.exports.policies = {
     '*': "userCanSeeProfile"
   },
 
+  group: {
+    index: "userCanSeeProfile",
+    edit: "userCanSeeProfile",
+    update:  "userCanSeeProfile"
+  },
+
   matchmode: {
     index: "userCanSeeProfile"
   }

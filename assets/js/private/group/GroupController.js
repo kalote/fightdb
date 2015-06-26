@@ -21,9 +21,11 @@ angular.module('GroupModule').controller('GroupController', ['$scope', '$http', 
       withCredentials: true
     })
     .then(function (data) {
+      console.log(data);
       toastr.success("Group successfully added !", "Success");
     })
     .catch(function (data) {
+      console.log(data);
       toastr.error("An error occured: "+data.err, "Error");
     })
     .finally(function eitherWay() {

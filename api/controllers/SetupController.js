@@ -63,7 +63,9 @@ module.exports = {
   //Setup Account: third step GROUP
   setupThird: function (req,res){
     //find group
-    Group.find().exec(function(err, groups) {
+    Group.find()
+    .populate('members')
+    .exec(function(err, groups) {
       if (err) return res.negotiate(err);
       res.view('group/edit', {
         layout: 'setup',

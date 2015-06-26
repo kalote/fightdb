@@ -25,7 +25,7 @@ Handlebars.registerHelper('date', function(data, options) {
 
 //Count function
 Handlebars.registerHelper('count', function (value) {
-  return value.constructor === Array ? value.length : "0";
+  return value.constructor === Array ? value.length : 0;
 });
 //Test function
 Handlebars.registerHelper('is', function (value, test, options) {

@@ -39,6 +39,7 @@ var jsFilesToInject = [
   'js/private/user/UserModule.js',
   'js/private/statistics/StatisticsModule.js',
   'js/private/group/GroupModule.js',
+  'js/private/match/MatchModule.js',
   'js/**/*.js'
 ];
 

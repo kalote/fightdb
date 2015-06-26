@@ -1,48 +1,65 @@
-<div class="container">
-  <div class="col-md-12">
+<div class="container marginFooter">
+  <div class="panel-group" id="accordion" role="tablist">
     <!-- SELECT GAME (1/4) -->
     <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3>
-          <span class="label label-primary">1</span>&nbsp;Select game</h3>
+      <div class="panel-heading" role="tab" id="headingOne">
+        <h3>Select game</h3>
       </div>
-    <div class="panel-body">
-      {{> selectgame me.id}}
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          {{> selectgame game}}
+        </div>
+      </div>
     </div>
     <!-- SELECT OPPONENT (2/4) -->
     <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3>
-          <span class="label label-primary">2</span>&nbsp;Select opponent</h3>
+      <div class="panel-heading" role="tab" id="headingTwo">
+        <h3>Select opponent</h3>
       </div>
-    <div class="panel-body">
-      {{> selectopponent me.id}}
+      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
+          {{> selectopponent me.id}}
+        </div>
+      </div>
     </div>
     <!-- SELECT CHAR (3/4) -->
     <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3>
-          <span class="label label-primary">3</span>&nbsp;Select character</h3>
+      <div class="panel-heading" role="tab" id="headingThree">
+        <h3>Select character</h3>
       </div>
-    <div class="panel-body">
-      {{> selectchar me.id}}
+      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="panel-body">
+          {{> selectchar me.id}}
+        </div>
+      </div>
     </div>
     <!-- SELECT TYPE (4/4) -->
     <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3>
-          <span class="label label-primary">4</span>&nbsp;Select type</h3>
+      <div class="panel-heading" role="tab" id="headingFour">
+        <h3>Select type</h3>
       </div>
-    <div class="panel-body">
-      {{> selecttype me.id}}
+      <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+        <div class="panel-body">
+          {{> selecttype me.id}}
+        </div>
+      </div>
     </div>
-    <!-- SELECT OPPONENT (2/4) -->
+    <!-- START GAME! -->
     <div class="panel panel-danger">
-      <div class="panel-heading">
+      <div class="panel-heading" role="tab" id="headingFive">
         <h3>Fight!</h3>
       </div>
-    <div class="panel-body">
-      {{> matchstarted}}
+      <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+        <div class="panel-body">
+          {{> matchstarted}}
+        </div>
+      </div>
     </div>
+    <input type="hidden" name="userId" value="{{me.id}}">
+    <input type="hidden" name="userName" value="{{me.nickname}}">
+    <input type="hidden" name="userAvatar" value="{{me.gravatarUrl}}">
+    <input type="hidden" name="userGroups" value="{{groups}}">
+    <input type="hidden" name="matchId" value="{{match.id}}">
+    <input type="hidden" name="_csrf" value="{{_csrf}}" />
   </div>
 </div>

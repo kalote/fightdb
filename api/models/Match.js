@@ -25,10 +25,12 @@ module.exports = {
     },
     type:{
       type: 'string',
-      enum: ['Tournament', 'Casual']
+      enum: ['Tournament', 'Casual'],
+      defaultsTo: 'Casual'
     },
     score:{
-      type: 'string'
+      type: 'string',
+      defaultsTo: '0:0'
     }
   }
 };

@@ -1,0 +1,9 @@
+{{#is (count this) 0}}
+<div class="row">
+  <div class="col-md-12">
+    <img src="/images/game/{{this.picture}}" class="img-responsive center-block gameSelected">
+  </div>
+</div>
+<input type="hidden" name="cntGame" value="{{#count this}}{{/count}}">
+<input type="hidden" name="gameId" value="{{this.id}}">
+{{/is}}
