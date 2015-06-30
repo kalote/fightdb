@@ -1,16 +1,16 @@
 <div class="container">
 	<div class="row">
-		<form ng-submit="submitEditForm()" id="edit-form" class="col-md-6 col-md-offset-3" name="edit">
+		<form id="edit-form" class="col-md-6 col-md-offset-3" name="edit">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h2 class="form-edit-heading">Edit your information</h2>
 				</div>
 				<div class="panel-body">
 					<!-- N A M E -->
-					<div class="control-group form-group col-md-12" ng-class="{'has-error':edit.name.$invalid && edit.name.$dirty}">
+					<div class="control-group form-group col-md-12">
 						<label>Your full name</label>
 
-						<input type="text" class="form-control" ng-init="editForm.name = '{{me.name}}'" name="name" ng-model="editForm.name" ng-maxlength="50" required>
+						<input type="text" class="form-control" value="{{me.name}}" name="name">
 
 						<span class="help-block has-error" ng-if="edit.name.$dirty">
 							<span ng-show="edit.name.$error.required">Name is required.</span>

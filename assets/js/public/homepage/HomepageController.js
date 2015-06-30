@@ -1,1 +1,0 @@
-angular.module('HomepageModule').controller('HomepageController', [ function(){}]);
