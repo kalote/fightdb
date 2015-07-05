@@ -1,6 +1,6 @@
 <div class="container marginFooter">
 	<div class="row">
-		<form ng-submit="submitEditGameSettingsForm()" id="edit-game-settings-form" class="col-md-6 col-md-offset-3" name="editgamesettings">
+		<form id="edit-game-settings-form" class="col-md-6 col-md-offset-3" name="editgamesettings">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h2 class="form-edit-heading">Edit your game settings</h2>
@@ -11,18 +11,16 @@
 					</div>
 					{{#buildGameList games}}{{/buildGameList}}
 					<div class="col-md-12 col-sm-12 col-xs-12 someMargin">
-						<button class="btn btn-primary btn-lg btn-block" type="submit">
-							<span ng-show="!editGameSettingsForm.loading">Save game settings</span>
-							<span class="overlord-loading-spinner fa fa-spinner" ng-show="editGameSettingsForm.loading" ></span>
-							<span ng-show="editGameSettingsForm.loading">Saving your game settings...</span>
+						<button class="btn btn-primary btn-lg btn-block btnEditGameInfo" type="submit">
+							<span>Save game settings</span>
 						</button>
 					</div>
 
-					<input type="hidden" name="nbFavGame" value="{{nbFavGame}}" ng-model="editGameSettingsForm.nbFavGame" />
-					<input type="hidden" name="nbFavChar" value="{{nbFavChar}}" ng-model="editGameSettingsForm.nbFavChar" />
-          <input type="hidden" name="setup" value="{{setup.step}}" ng-model="editGameSettingsForm.setup" />
-					<input type="hidden" name="_csrf" value="{{_csrf}}" ng-model="editGameSettingsForm._csrf" />
-					<input type="hidden" name="userId" ng-init=" editGameSettingsForm.userId = '{{me.id}}'" ng-model="editGameSettingsForm.userId" />
+					<input type="hidden" name="nbFavGame" value="{{nbFavGame}}" />
+					<input type="hidden" name="nbFavChar" value="{{nbFavChar}}" />
+          {{#if setup.step}}<input type="hidden" name="setup" value="{{setup.step}}" />{{/if}}
+					<input type="hidden" name="_csrf" value="{{_csrf}}" />
+					<input type="hidden" name="userId" value="{{me.id}}" />
 				</div>
 			</div>
 		</form>

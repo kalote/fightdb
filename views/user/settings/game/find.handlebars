@@ -14,33 +14,31 @@
 					</div>
 					{{else}}
 					<div class="row">
-						<div class="col-md-4 text-left">
+						<div class="col-md-4 text-center">
 							<h3>Game:</h3>
 						</div>
-						<div class="col-md-8 text-center">
+						<div class="col-md-8">
 							<div class="row">
 								{{#each gsettings.games}}
 								<div class="col-md-8">
-									<img src="/images/game/{{this.picture}}" class="img-responsive">
+									<img src="/images/game/{{this.picture}}" class="center-block img-responsive">
 								</div>
 								{{/each}}
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-4 text-left">
+						<div class="col-md-4 text-center">
 							<h3>Favorite characters:</h3>
 						</div>
-						<div class="col-md-8 text-left">
-							<div class="row">
-								{{#each gsettings.favoriteCharacters}}
-								<div class="col-md-3 col-sm-2 col-xs-3">
-									<div
-										style="background-image: url('/images/character/{{this.picture}}');"
-										class="charSpriteSelected char charSprite"></div>
-								</div>
-								{{/each}}
-							</div>
+						<div class="col-md-8">
+							{{#each gsettings.favoriteCharacters}}
+              <div class="list-group-item col-xs-4">
+								<div
+									style="background-image: url('/images/character/{{this.picture}}');"
+									class="center-block charSpriteSelected char charSprite"></div>
+              </div>
+							{{/each}}
 						</div>
 					</div>
 					{{/unless}}

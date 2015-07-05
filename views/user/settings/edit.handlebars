@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<form ng-submit="submitEditSettingsForm()" id="edit-settings-form" class="col-md-6 col-md-offset-3" name="editsettings">
+		<form id="edit-settings-form" class="col-md-6 col-md-offset-3" name="editsettings">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h2 class="form-edit-heading">Edit your settings</h2>
@@ -9,35 +9,30 @@
 					<!-- F A C E B O O K -->
 					<div class="control-group form-group col-md-12">
 						<label>Your facebook username</label>
-
-						<input type="text" class="form-control" placeholder="DaigoFacebook" name="facebook" ng-model="editSettingsForm.facebook" ng-init="editSettingsForm.facebook = '{{settings.facebook}}'">
+						<input type="text" class="form-control" placeholder="DaigoFacebook" name="facebook" value="{{settings.facebook}}">
 					</div>
 
 					<!-- T W I T T E R -->
 					<div class="control-group form-group col-md-12">
 						<label>Your twitter username</label>
-
-						<input type="text" class="form-control" placeholder="DaigoTwitter" name="twitter" ng-model="editSettingsForm.twitter" ng-init="editSettingsForm.twitter = '{{settings.twitter}}'">
+						<input type="text" class="form-control" placeholder="DaigoTwitter" name="twitter" value="{{settings.twitter}}">
 					</div>
 
 					<!-- T W I T C H -->
 					<div class="control-group form-group col-md-12">
 						<label>Your twitch username</label>
-
-						<input type="text" class="form-control" placeholder="DaigoTwitch" name="twitch" ng-model="editSettingsForm.twitch" ng-init="editSettingsForm.twitch = '{{settings.twitch}}'">
+						<input type="text" class="form-control" placeholder="DaigoTwitch" name="twitch" value="{{settings.twitch}}">
 					</div>
 
 					<div class="control-group form-group col-md-12">
-						<button class="btn btn-primary btn-lg btn-block" type="submit">
-							<span ng-show="!editSettingsForm.loading">Save social settings</span>
-							<span class="overlord-loading-spinner fa fa-spinner" ng-show="editSettingsForm.loading" ></span>
-							<span ng-show="editSettingsForm.loading">Saving your social settings...</span>
+						<button class="btn btn-primary btn-lg btn-block btnEditSocialInfo" type="submit">
+							<span>Save social settings</span>
 						</button>
 					</div>
 
-					<input type="hidden" name="_csrf" value="{{_csrf}}" ng-model="editSettingsForm._csrf" />
-          <input type="hidden" name="setup" value="{{setup.step}}" ng-model="editSettingsForm.setup" />
-					<input type="hidden" name="userId" ng-init=" editSettingsForm.userId = '{{me.id}}'" ng-model="editSettingsForm.userId" />
+					<input type="hidden" name="_csrf" value="{{_csrf}}" />
+          {{#if setup.step}}<input type="hidden" name="setup" value="{{setup.step}}" />{{/if}}
+					<input type="hidden" name="userId" value="{{me.id}}" />
 				</div>
 			</div>
 		</form>

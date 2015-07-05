@@ -85,6 +85,7 @@ module.exports = {
 
 	// process the info from edit view
 	update: function(req, res) {
+    console.log(req.allParams());
 		var userGSObj = {
 			games: req.param('games'),
 			favoriteCharacters: req.param('characters'),

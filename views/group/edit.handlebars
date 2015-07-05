@@ -24,7 +24,7 @@
 					</div>
 
 					<input type="hidden" name="_csrf" value="{{_csrf}}" />
-          <input type="hidden" name="setup" value="{{setup.step}}" />
+          {{#if setup.step}}<input type="hidden" name="setup" value="{{setup.step}}" />{{/if}}
 					<input type="hidden" name="userId" value="{{me.id}}" />
 				</div>
 			</div>

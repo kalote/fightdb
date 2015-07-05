@@ -68,13 +68,13 @@ Handlebars.registerHelper('buildCharList', function (characters, gameIndex) {
       out += '<input type="hidden" name="favCharacters'+cnt+'" value="'+characters[j].id+'" />';
       out += '<div style="background-image: url(\'/images/character/'+characters[j].picture+'\');" '+
         'class="charSpriteSelected char charSprite" '+
-        'ng-click="selectChar(\''+characters[j].id+'\', \''+gameIndex+'\', \''+j+'\')" '+
+        'onclick="selectChar(\''+characters[j].id+'\', \''+gameIndex+'\', \''+j+'\')" '+
         'id="game'+gameIndex+'char'+j+'"></div>';
       cnt ++;
     } else {
       out += '<div style="background-image: url(\'/images/character/'+characters[j].picture+'\');" '+
         'class="charSpriteNotSelected char charSprite" '+
-        'ng-click="selectChar(\''+characters[j].id+'\', \''+gameIndex+'\', \''+j+'\')" '+
+        'onclick="selectChar(\''+characters[j].id+'\', \''+gameIndex+'\', \''+j+'\')" '+
         'id="game'+gameIndex+'char'+j+'"></div>';
     }
     out += '</div>';
@@ -123,7 +123,7 @@ Handlebars.registerHelper('buildGameList', function (games) {
       className='';
   for (var i=0; i<gameCount; i++){
     out += '<div class="row"><div class="col-md-12">';
-    out += '<a ng-click="selectGame(\''+games[i].id+'\',\''+i+'\')">';
+    out += '<a onclick="selectGame(\''+games[i].id+'\',\''+i+'\')">';
     if (games[i].favorite) {
       out += '<input type="hidden" name="favGames'+cntGame+'" value="'+games[i].id+'" />'+
         '<img src="/images/game/'+games[i].picture+'" class="img-responsive gameSelected game center-block" '+

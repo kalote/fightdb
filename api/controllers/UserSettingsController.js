@@ -61,6 +61,7 @@ module.exports = {
 			twitch: req.param('twitch'),
 			user: req.param('id')
 		}
+
 		UserSettings.update({user: req.param('id')}, userObj, function userSettingsUpdated(err) {
 			if (err) return res.negotiate(err);
 

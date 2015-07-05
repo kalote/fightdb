@@ -7,27 +7,40 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="col-md-4 text-left">
-							<h3>Facebook:</h3>
-						</div>
-						<div class="col-md-8 text-left">
-							<h3>{{#if settings.facebook}}{{settings.facebook}}{{else}}<em>No facebook set</em>{{/if}}</h3>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4 text-left">
-							<h3>Twitter:</h3>
-						</div>
-						<div class="col-md-8 text-left">
-							<h3>{{#if settings.twitter}}{{settings.twitter}}{{else}}<em>No twitter set</em>{{/if}}</h3>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4 text-left">
-							<h3>Twitch:</h3>
-						</div>
-						<div class="col-md-8 text-left">
-							<h3>{{#if settings.twitch}}{{settings.twitch}}{{else}}<em>No twitch set</em>{{/if}}</h3>
+						<div class="col-md-12 text-left">
+              <div class="list-group-item">
+                <div class="media">
+                  <div class="media-left media-middle">
+                    <span class="fa fa-2x fa-facebook-square"></span>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">Facebook</h4>
+                    <span>{{#if settings.facebook}}{{settings.facebook}}{{else}}<em>No facebook set</em>{{/if}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="list-group-item">
+                <div class="media">
+                  <div class="media-left media-middle">
+                    <span class="fa fa-2x fa-twitter-square"></span>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">Twitter</h4>
+                    <span>{{#if settings.twitter}}{{settings.twitter}}{{else}}<em>No twitter set</em>{{/if}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="list-group-item">
+                <div class="media">
+                  <div class="media-left media-middle">
+                    <span class="fa fa-2x fa-twitch"></span>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">Twitch</h4>
+                    <span>{{#if settings.twitch}}{{settings.twitch}}{{else}}<em>No twitch set</em>{{/if}}</span>
+                  </div>
+                </div>
+              </div>
 						</div>
 					</div>
 					<a class="btn btn-lg btn-primary btn-block" href="/user/settings/edit/{{me.id}}">Edit</a>

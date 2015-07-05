@@ -87,7 +87,6 @@ function setChar(){
 }
 
 function setType(matchType){
-
   $.ajax({
     headers: {
       "X-CSRF-Token": $("input[name=_csrf]").val()
