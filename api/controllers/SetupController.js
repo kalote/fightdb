@@ -18,7 +18,6 @@ module.exports = {
       });
       res.view('user/settings/edit', {
         layout: 'setup',
-        pageName: 'User',
         me: {
           id: req.param('id')
         },
@@ -47,7 +46,6 @@ module.exports = {
         if (err) return res.negotiate(err);
         res.view('user/settings/game/edit', {
           layout: 'setup',
-          pageName: 'User',
           me: {
             id: req.param('id')
           },
@@ -69,7 +67,6 @@ module.exports = {
       if (err) return res.negotiate(err);
       res.view('group/edit', {
         layout: 'setup',
-        pageName: 'Group',
         me: {
           id: req.param('id')
         },

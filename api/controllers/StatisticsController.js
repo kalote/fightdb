@@ -9,7 +9,6 @@ module.exports = {
   index: function (req,res){
     res.view('statistics/find', {
       layout: 'private',
-      pageName: 'Statistics',
       me: {
         id: req.param('id')
       }

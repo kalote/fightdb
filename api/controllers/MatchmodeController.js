@@ -46,7 +46,6 @@ module.exports = {
         if (err) return res.negotiate(err);
         res.view('matchmode/new', {
           layout: 'private',
-          pageName: 'Match',
           me: usr,
           game: gameInfo,
           match: matchInfo,

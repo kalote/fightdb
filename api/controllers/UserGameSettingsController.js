@@ -38,7 +38,6 @@ module.exports = {
       }
       res.view('user/settings/game/find', {
         layout: 'private',
-        pageName: 'User',
         me: {
           id: req.param('id')
         },
@@ -71,7 +70,6 @@ module.exports = {
         }
         res.view('user/settings/game/edit', {
           layout: 'private',
-          pageName: 'User',
           me: {
             id: req.param('id')
           },

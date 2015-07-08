@@ -19,7 +19,6 @@ module.exports = {
       }
       res.view('group/find', {
         layout: 'private',
-        pageName: 'Group',
         me: {
           id: req.param('id')
         },
@@ -40,7 +39,6 @@ module.exports = {
       }
       res.view('group/edit', {
         layout: 'private',
-        pageName: 'Group',
         me: {
           id: req.param('id')
         },
