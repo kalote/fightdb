@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container marginFooter">
   <div class="jumbotron">
     <h1>
       <img src="{{me.gravatarUrl}}"><br />
@@ -35,7 +35,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <span class="glyphicon glyphicon-flash"></span>
-          <a href="#">MatchMode</a>
+          <a href="/match-mode/{{me.id}}">MatchMode</a>
         </div>
         <div class="panel-body">
         The match mode allows you to enter your match's results. Choose the type of game, the opponent, and start entering scores !
@@ -47,7 +47,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <span class="glyphicon glyphicon-stats"></span>
-          <a href="#">Statistics</a>
+          <a href="/statistics/{{me.id}}">Statistics</a>
         </div>
         <div class="panel-body">
         Here are all your statistics: win/loose rate based on a character (or a player), # of win/defeat, ranking in your area, ...
@@ -59,22 +59,10 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <span class="glyphicon glyphicon-user"></span>
-          <a href="#">My Profile</a>
+          <a href="/user/find/{{me.id}}">My Profile</a>
         </div>
         <div class="panel-body">
         User profile: set your favorite characters, your location and other basic information.
-        </div>
-      </div>
-    </div>
-    <!-- FIGHTER LOCATOR -->
-    <div class="col-md-3">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <span class="glyphicon glyphicon-globe"></span>
-          <a href="#">Fighter Locator</a>
-        </div>
-        <div class="panel-body">
-        Soon ...
         </div>
       </div>
     </div>

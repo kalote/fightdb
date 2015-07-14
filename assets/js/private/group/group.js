@@ -1,17 +1,29 @@
 var notLoading = $(".groupSubmit").html(),
     group = [],
-    userId = $("input[name=userId]").val();
+    userId = $("input[name=userId]").val(),
+    loaded = false;
 
 function addGroup(groupId){
-  if (group.indexOf(groupId)>-1) {
-    group.splice(group.indexOf(groupId), 1);
-    $("#group"+groupId).removeClass("alert-success").addClass("alert-info");
-  } else {
-    group.push(groupId);
-    $("#group"+groupId).removeClass("alert-info").addClass("alert-success");
+  //init group for user
+  if (!loaded){
+    $.ajax({
+      headers: {
+        "X-CSRF-Token": $("input[name=_csrf]").val()
+      },
+      xhrFields: {
+        withCredentials: true
+      },
+      url: "/group/getgroups/"+userId,
+      method: "POST"
+    }).done(function (sailsResponse){
+      group=sailsResponse.groups;
+    }).fail(function onError(sailsResponse){
+      toastr.error('An error occured: '+sailsResponse.err, 'Error');
+    }).always(function(){
+      loaded = true;
+    });
   }
 
-  //CSRF header
   $.ajax({
     headers: {
       "X-CSRF-Token": $("input[name=_csrf]").val()
@@ -26,7 +38,15 @@ function addGroup(groupId){
       groupId: groupId
     }
   }).done(function (){
-    toastr.success("Group successfully added !", "Success");
+    if (group.indexOf(groupId)>-1) {
+      group.splice(group.indexOf(groupId), 1);
+      $("#group"+groupId).removeClass("alert-success").addClass("alert-info");
+      toastr.success("Group successfully removed !", "Success");
+    } else {
+      group.push(groupId);
+      $("#group"+groupId).removeClass("alert-info").addClass("alert-success");
+      toastr.success("Group successfully added !", "Success");
+    }
   }).fail(function onError(sailsResponse){
     toastr.error("An error occured: "+sailsResponse.err, "Error");
   });

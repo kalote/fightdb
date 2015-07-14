@@ -79,6 +79,7 @@ module.exports.routes = {
   'GET /group/edit/:id': 'GroupController.edit',
   'POST /group/update/:id': 'GroupController.update',
   'POST /group/updategroup': 'GroupController.updategroup',
+  'POST /group/getgroups/:id': 'GroupController.getgroups',
 
   // MatchMode
   'GET /match-mode/:id': 'MatchmodeController.index',

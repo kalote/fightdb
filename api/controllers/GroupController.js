@@ -5,6 +5,8 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
+_ = require("lodash");
+
 module.exports = {
   //Display the group of the user
   index: function (req,res){
@@ -14,7 +16,7 @@ module.exports = {
     .exec(function (err, groups) {
       if (err) return res.negotiate(err);
       for (var i in groups){
-        if (groups[i].members.indexOf(req.param('id'))>-1)
+        if (_.find(groups[i].members, {id: req.param("id")}) !== undefined)
           output.push(groups[i]);
       }
       res.view('group/find', {
@@ -22,7 +24,7 @@ module.exports = {
         me: {
           id: req.param('id')
         },
-        groups: groups
+        groups: output
       });
     });
   },
@@ -34,7 +36,7 @@ module.exports = {
     .exec(function (err, groups) {
       if (err) return res.negotiate(err);
       for (var i in groups){
-        if (groups[i].members.indexOf(req.param('id'))>-1)
+        if (_.find(groups[i].members, {id: req.param("id")}) !== undefined)
           groups[i].subscribed=true;
       }
       res.view('group/edit', {
@@ -56,7 +58,7 @@ module.exports = {
     .populate("members")
     .exec(function(err, g) {
       if (err) return res.negotiate(err);
-      if (g[0].members && g[0].members.indexOf(uid)>-1) {
+      if (_.find(g[0].members, {id: uid}) !== undefined) {
         g[0].members.remove(uid);
       } else {
         g[0].members.add(uid);
@@ -71,6 +73,24 @@ module.exports = {
   update: function(req, res) {
     return res.json({
       id: req.param('id')
+    });
+  },
+
+  // get all group ID for a specific user
+  getgroups: function(req, res) {
+    var out = [];
+    User.findOne(req.param("id"))
+    .populate("groups")
+    .exec(function(err, u){
+      if (err) return res.negotiate(err);
+
+      for (var j in u.groups){
+        if (u.groups[j].id !== undefined)
+          out.push(u.groups[j].id);
+      }
+      return res.json({
+        groups: out
+      });
     });
   }
 };
