@@ -61,7 +61,7 @@ module.exports = {
         if (ugs.games && ugs.favoriteCharacters){
           _.each(games, function (key, val){
             games[val].favorite = ugs.games.indexOf(key.id)>-1;
-              nbFavGame=ugs.games.indexOf(key.id)>-1?nbFavGame+1:nbFavGame;
+            nbFavGame=ugs.games.indexOf(key.id)>-1?nbFavGame+1:nbFavGame;
             _.each(games[val].characters, function (k, v){
               games[val].characters[v].favorite = ugs.favoriteCharacters.indexOf(k.id)>-1;
               nbFavChar=ugs.favoriteCharacters.indexOf(k.id)>-1?nbFavChar+1:nbFavChar;
@@ -83,7 +83,6 @@ module.exports = {
 
 	// process the info from edit view
 	update: function(req, res) {
-    console.log(req.allParams());
 		var userGSObj = {
 			games: req.param('games'),
 			favoriteCharacters: req.param('characters'),
