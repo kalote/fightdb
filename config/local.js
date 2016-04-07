@@ -2,8 +2,7 @@ module.exports={
   connections: {
     mongo: {
       module: 'sails-mongo',
-      url: process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://127.0.0.1:27017/'
-      database: 'fightdb'
+      url: process.env.OPENSHIFT_MONGODB_DB_URL+'fightdb' || 'mongodb://127.0.0.1:27017/fightdb'
     }
   },
   host: process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0",
