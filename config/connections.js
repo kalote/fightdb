@@ -32,21 +32,12 @@ module.exports.connections = {
     adapter: 'sails-disk'
   },
 
-  mongodb: {
+  mongo: {
     adapter: 'sails-mongo',
     host: process.env.OPENSHIFT_MONGODB_DB_HOST,
     port: 27017,
     user: process.env.OPENSHIFT_MONGODB_DB_USERNAME,
     password: process.env.OPENSHIFT_MONGODB_DB_PASSWORD,
-    database: 'fightdb'
-  },
-
-  mongo: {
-    adapter: 'sails-mongo',
-    host: 'localhost',
-    port: 27017,
-    user: '',
-    password: '',
     database: 'fightdb'
   }
 
