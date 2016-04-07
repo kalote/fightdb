@@ -1,4 +1,4 @@
-#Fighter DB - Find. Play. Keep scores.
+#Fighter DB - Find. Play. Keep scores. (update 07/04)
 
 ---------------------------
 
@@ -17,16 +17,16 @@ You'll also need to create a `config/local.js` file with the proper connection i
 
 ```
 module.exports={
-	connections: {
-		mongo: {
-			module: 'sails-mongo',
-			host: 'localhost',
-			port: 27017,
-			user: '',
-			password: '',
-			database: 'fightdb'
-		}
-	}
+  connections: {
+    mongo: {
+      module: 'sails-mongo',
+      host: 'localhost',
+      port: 27017,
+      user: '',
+      password: '',
+      database: 'fightdb'
+    }
+  }
 };
 ```
 ##What is it
@@ -53,7 +53,7 @@ Add new (or existing) friends, create a community, create session and meet new f
 
 ###Keep scores
 
-- Calculation based on a complex ranking algorythm 
+- Calculation based on a complex ranking algorythm
 - Win / loose rate per character / per player
 - Community / area / world ranking
 
@@ -61,7 +61,7 @@ Add new (or existing) friends, create a community, create session and meet new f
 
 ##Registration
 
-Register using the needed information: 
+Register using the needed information:
 
 - Name
 - Gender
@@ -78,17 +78,17 @@ Register using the needed information:
 Users can set up multiple additionnal information in their profile:
 
 - Social network settings:
-	- Twitter
-	- Facebook
-	- Twitch
+  - Twitter
+  - Facebook
+  - Twitch
 - Game settings:
-	- Favorite game
-	- Favorite characters
+  - Favorite game
+  - Favorite characters
 - Friends list
-	- Manage your friends and your community
-	- Use the "Flash this QR code to add me as a friend" feature to easily add new friend
-	- Create community (Premium)
-	
+  - Manage your friends and your community
+  - Use the "Flash this QR code to add me as a friend" feature to easily add new friend
+  - Create community (Premium)
+
 ----------------------------
 
 ##Player locator
