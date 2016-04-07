@@ -6,6 +6,7 @@
   "keywords": [],
   "dependencies": {
     "grunt": "0.4.2",
+    "grunt-cli": "^1.1.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-coffee": "~0.10.1",
     "grunt-contrib-concat": "~0.3.0",
