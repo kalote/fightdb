@@ -34,10 +34,10 @@ module.exports.connections = {
 
   mongo: {
     adapter: 'sails-mongo',
-    host: process.env.OPENSHIFT_MONGODB_DB_HOST,
+    host: 'localhost',
     port: 27017,
-    user: process.env.OPENSHIFT_MONGODB_DB_USERNAME,
-    password: process.env.OPENSHIFT_MONGODB_DB_PASSWORD,
+    user: '',
+    password: '',
     database: 'fightdb'
   }
 
